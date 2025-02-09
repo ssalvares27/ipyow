@@ -1,0 +1,12 @@
+flask-migrate
+python-barcode
+Pillow
+flask-wtf
+mercadopago
+flask-mail
+gunicorn
+
+
+
+
+

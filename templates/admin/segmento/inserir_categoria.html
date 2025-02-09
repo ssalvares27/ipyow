@@ -1,0 +1,52 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/inserir_categoria.css') }}">
+
+    <div class="container mt-5">
+    
+        <form method="POST" action="{{ url_for('segmento.inserir_categoria') }}" class="backwite">
+        
+            {{ form.hidden_tag() }}  <!-- Necessário para CSRF protection, garante a segurança contra ataques CSRF -->
+            
+            <!-- Campo para o nome da categoria -->
+            <div class="mb-3">
+                {{ form.nome.label(class="form-label") }} <!-- Rótulo do campo 'nome' -->
+                {{ form.nome(class="form-control") }}  <!-- Renderiza o campo de entrada para 'nome' da categoria -->
+            </div>         
+            
+            <!-- Select do ícone da categoria -->
+            <div class="mb-3">            
+                {{ form.icone.label(class="form-label") }}
+                {{ form.icone(class="form-control", id="iconeSelect") }} <!-- Renderiza o campo select para 'icone' -->               
+                 <div id="iconePreview">
+                     <!-- Ícone será exibido aqui -->
+                 </div>                 
+            </div>
+                                              
+            <!-- Campo para a descrição da categoria -->
+            <div class="mb-3">
+                {{ form.descricao.label(class="form-label") }} <!-- Rótulo do campo 'descricao' -->
+                {{ form.descricao(class="form-control") }}  <!-- Renderiza o campo de entrada para 'descricao' da categoria -->
+            </div>
+            
+            <!-- Botão de submit para enviar o formulário -->
+            <button type="submit" class="btn btn-default">
+                <i class="fas fa-save"></i> Inserir Categoria
+            </button>
+            
+            <!-- Link para cancelar e voltar para a página de inserção de produto -->
+            <a href="{{ url_for('produto.inserir_produto') }}" class="btn btn-cancelar">
+                <i class="fas fa-times"></i> Cancelar
+            </a>
+            
+        </form>
+        
+    </div>
+
+<script src="{{ url_for('static', filename='js/admin/inserir_categoria.js') }}"></script>
+
+{% endblock %}
+
+

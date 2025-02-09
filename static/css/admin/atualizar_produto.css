@@ -1,0 +1,65 @@
+/* ======================================
+   IMAGEM
+   ====================================== */
+
+
+/* Estilo para o visor de imagens */
+.image-preview-container {
+    display: flex; /* Alinha os elementos em linha */
+    flex-wrap: wrap; /* Permite quebrar linha quando necessário */
+    gap: 10px; /* Espaço entre as imagens */
+    justify-content: flex-start; /* Alinha os itens à esquerda */
+    padding: 10px; /* Espaço interno do container */
+}
+
+/* Estilo para cada imagem */
+.image-preview {
+    position: relative; /* Necessário para posicionar o botão "Remover" */
+    display: inline-block; /* Mantém cada imagem como bloco inline */
+    margin-bottom: 10px; /* Espaçamento abaixo de cada imagem */
+}
+
+/* Estilo para a imagem */
+.image-preview img {
+    max-width: 150px; /* Tamanho máximo da largura da imagem */
+    max-height: 150px; /* Tamanho máximo da altura da imagem */
+    border: 1px solid #ddd; /* Borda ao redor da imagem */
+    border-radius: 5px; /* Bordas arredondadas */
+    object-fit: cover; /* Garante que a imagem fique proporcional dentro do espaço */
+}
+
+/* Estilo para o botão de remoção */
+.image-preview .remove-image-btn {
+    position: absolute; /* Permite posicionar o botão sobre a imagem */
+    top: 5px; /* Distância do topo da imagem */
+    right: 5px; /* Distância do lado direito da imagem */
+    background-color: red; /* Cor do botão */
+    color: white; /* Cor do texto do botão */
+    border: none; /* Remove borda do botão */
+    border-radius: 50%; /* Deixa o botão redondo */
+    cursor: pointer; /* Mostra cursor de clique */
+    width: 25px; /* Largura do botão */
+    height: 25px; /* Altura do botão */
+    font-size: 14px; /* Tamanho da fonte no botão */
+}
+
+/* Esconde os botões de navegação se não forem necessários */
+#nav-buttons {
+    margin-top: 10px;
+    text-align: center;
+    display: none; /* Só exibir quando necessário */
+}
+
+#nav-buttons button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#nav-buttons button:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,11 @@
+flask db init
+
+flask db migrate -m "migracao2_080225"
+
+flask db upgrade
+
+flask db downgrade
+
+
+
+DROP TABLE _alembic_tmp_preferencias;

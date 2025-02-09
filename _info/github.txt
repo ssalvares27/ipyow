@@ -1,0 +1,21 @@
+Acesse usando o cmd, o diretorio onde desja torna-lo compartilhado com o GitHub
+
+Adiciona o repositorio Git:
+git init
+
+Execute o seguinte comando no terminal (PowerShell ou Prompt de Comando) para adicionar D:/GitHub como um diretório seguro:
+git config --global --add safe.directory D:/GitHub
+
+Agora, tente adicionar o repositório
+git remote add origin https://github.com/ssalvares27/ipyow.git
+                     
+
+Verificar o repositório remoto
+git remote -v
+git status
+
+
+
+Para saber qual branch você está utilizando localmente (se é master, main ou outro), você pode rodar o seguinte comando no diretório do repositório:
+git branch
+

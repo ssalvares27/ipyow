@@ -1,0 +1,144 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/inserir_movimento.css') }}">
+
+<form method="POST" class="backwite">
+    {{ form.hidden_tag() }}   
+    
+   
+        
+    <!-- Select do Tipo -->
+    <div>
+        <label for="tipo">Tipo</label>
+        <select class="form-control" id="tipo" name="tipo" onchange="verificarTipo()">
+            <option value="" disabled selected>Selecionar Tipo</option> <!-- Opção padrão -->
+            <option value="entrada">Entrada</option>
+            <option value="saida">Saída</option>
+        </select>
+    </div>
+    
+     <!-- Select do Produto -->
+     <div>
+         <label for="produto_id">Produto</label>
+         <select class="form-control" id="produto_id" name="produto_id" onchange="verificarProduto()">
+             <option value="" disabled selected>Selecionar Produto</option> <!-- Opção padrão -->
+             {% for p in produtos %}
+                 <option value="{{ p.id }}">{{ p.nome }}</option>
+             {% endfor %}
+         </select>
+     </div>
+    
+    <!-- Campo Quantidade -->    
+   <div>
+        {{ form.quantidade.label }}  <!-- Renderiza o rótulo do campo -->
+        {{ form.quantidade(class_="form-control", id="quantidade", min="1", required=True) }}
+        <small id="quantidade-estoque" class="form-text text-muted">
+            Quantidade em estoque: 0
+        </small> <!-- Exibe a quantidade do estoque -->
+    </div>
+
+
+    <!-- Campo Preço de custo -->    
+    <div class="input-container">
+        {{ form.valor.label }}
+        {{ form.valor(class="form-control", id="preco", type="text", required=True) }}
+        <button type="button" class="clear-btn" onclick="limparCampoDinamico(this)" title="Limpar">
+            <i class="fas fa-times-circle"></i>
+        </button>
+        <small class="form-text text-muted", id="informe">Informe o preço de custo (apenas para entradas).</small>
+    </div>   
+
+   <!-- Botão Registrar -->
+    <button type="submit" class="btn btn-default" id="salvarBotao" disabled>
+        <i class="fas fa-save"></i> Registrar
+    </button>
+            
+ 
+        
+    <!-- Botão cancelar -->  
+    <a href="{{ url_for('estoque.ver_movimento') }}" class="btn btn-cancelar">
+        <i class="fas fa-times"></i>Cancelar
+    </a>
+</form>
+
+<script>
+   document.addEventListener("DOMContentLoaded", function() {
+    const produtoSelect = document.getElementById("produto_id");  // Campo de seleção de produto
+    const quantidadeEstoque = document.getElementById("quantidade-estoque");  // Local para mostrar a quantidade em estoque
+    const tipoMovimento = document.getElementById("tipo");  // Campo de tipo de movimento (entrada/saida)
+    const quantidadeInput = document.getElementById("quantidade");  // Campo de quantidade
+
+    // Função para atualizar a quantidade de estoque
+    function atualizarQuantidadeEstoque() {
+        const produtoId = produtoSelect.value;
+
+        if (produtoId > 0) {
+            // Encontrar o produto selecionado
+            const produto = produtos.find(p => p.id === parseInt(produtoId));
+
+            if (produto) {
+                // Exibe a quantidade calculada de estoque com formatação em negrito verde e tamanho maior
+                quantidadeEstoque.innerHTML = `Quantidade em estoque: <strong class="quantidade-estoque">${produto.quantidade}</strong>`;
+
+                // Limitar o campo de quantidade se for uma saída
+                if (tipoMovimento.value === "saida") {
+                    quantidadeInput.max = produto.quantidade;  // Limita a quantidade à quantidade em estoque
+                } else {
+                    quantidadeInput.max = "";  // Sem limite para entrada
+                }
+            }
+        } else {
+            quantidadeEstoque.innerHTML = "Quantidade em estoque: <strong class='quantidade-estoque'>0</strong>";
+            quantidadeInput.max = "";  // Remover limite se não houver produto
+        }
+    }
+
+    // Função para filtrar os produtos com estoque zero
+    function filtrarProdutos() {
+        const tipo = tipoMovimento.value;
+        const options = produtoSelect.options;
+        
+        for (let i = 0; i < options.length; i++) {
+            const option = options[i];
+            const quantidade = parseInt(option.getAttribute("data-quantidade"));
+
+            if (tipo === "saida" && quantidade === 0) {
+                option.style.display = "none";  // Esconde o produto com estoque 0
+            } else {
+                option.style.display = "block";  // Exibe o produto
+            }
+        }
+    }
+
+    // Array com dados de produtos e quantidades
+    const produtos = [
+        {% for p in produtos %}
+            { id: {{ p.id }}, nome: "{{ p.nome }}", quantidade: {{ p.calcular_quantidade_estoque() }} },
+        {% endfor %}
+    ];
+
+    // Atualizar a quantidade sempre que o produto for alterado
+    produtoSelect.addEventListener("change", atualizarQuantidadeEstoque);
+
+    // Atualizar a quantidade sempre que o tipo de movimento for alterado
+    tipoMovimento.addEventListener("change", function() {
+        // Resetar os campos quando o tipo de movimento mudar
+        produtoSelect.selectedIndex = 0;  // Reseta a seleção do produto para "Selecionar Produto"
+        quantidadeInput.value = 1;  // Reseta a quantidade para 1
+        quantidadeEstoque.innerHTML = "Quantidade em estoque: <strong class='quantidade-estoque'>0</strong>";  // Reseta a exibição da quantidade em estoque
+        atualizarQuantidadeEstoque();
+        filtrarProdutos();  // Filtra os produtos com base no tipo de movimento
+    });
+
+    // Atualizar a quantidade ao carregar a página, caso algum produto seja pré-selecionado
+    atualizarQuantidadeEstoque();
+    filtrarProdutos();  // Chama a função de filtragem ao carregar a página
+});
+
+</script>
+
+<script src="{{ url_for('static', filename='js/admin/inserir_movimento.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "admin/base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">       
+    <p>Escolha uma das opções abaixo:</p>
+    <div class="d-flex justify-content-around mt-4">
+        <!-- Botão para Inserir Categoria -->
+        <a href="{{ url_for('segmento.inserir_categoria') }}" class="btn btn-primary btn-lg">
+            Inserir Categoria
+        </a>
+        
+        <!-- Botão para Inserir Subcategoria -->
+        <a href="{{ url_for('segmento.inserir_subcategoria') }}" 
+           class="btn btn-secondary btn-lg {% if not categorias_existem %}disabled{% endif %}" 
+           {% if not categorias_existem %}aria-disabled="true"{% endif %}>
+            Inserir Subcategoria
+        </a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+ipyow_teste:
+usuario:  TESTUSER397332763
+senha: zgXXuea8BX
+
+User ID:
+2255004884
+
+Número da aplicação
+7494560022086392
+
+Integração com
+CheckoutPro
+
+APP_USR-7494560022086392-020614-e3bd198fae9aa4ae957e72bdbbf8adff-2255004884
+===========================================================================
+ipyow_teste_2
+usuario:  TESTUSER764168609
+senha: aXy7ZBI0dZ
+
+Mastercard
+5031 4332 1540 6351
+123
+11/25
+
+
+Visa
+4235 6477 2802 5682
+123
+11/25
+
+American Express
+3753 651535 56885
+1234
+11/25
+
+
+12345678909
+
+
+http://127.0.0.1:5000/site/cart/sucesso_pagamento
+http://127.0.0.1:5000/site/cart/falha_pagamento
+http://127.0.0.1:5000/site/cart/pendente_pagamento

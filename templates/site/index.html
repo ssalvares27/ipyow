@@ -1,0 +1,40 @@
+{% extends "site/base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/site/index.css') }}">
+
+<div class="index-container">
+    <div class="container">
+        <div class="breadcrumbs">
+            <span>{{ page_title }}</span>
+            {% if categoria_id and categoria_id in categorias %}
+                > <span>{{ categorias[categoria_id].nome }}</span>
+            {% endif %}
+        </div>
+        <!-- Produtos -->
+        <div class="product-grid">
+            {% for item in produtos %}
+            <div class="product-card {% if item.estoque_zerado %}estoque-zerado{% endif %}" data-categoria="{{ item.produto.subcategoria.categoria_id }}">
+                {% if item.estoque_zerado %}
+                <div class="product-out-of-stock">
+                    Produto Esgotado
+                </div>
+                {% endif %}
+                <img src="{{ url_for('static', filename=item.imagem_url) }}" alt="{{ item.produto.nome }}" class="product-image">
+                <div class="product-description">
+                    <div class="product-title">{{ item.produto.descricao }}</div>
+                    <div class="product-price">R$ {{ "%.2f"|format(item.preco) }}</div>
+                </div>
+               <a href="{% if not item.estoque_zerado %}{{ url_for('loja.product_detail', produto_id=item.produto.id) }}{% endif %}" 
+                   class="btn btn-default{% if item.estoque_zerado %} disabled{% endif %}" 
+                   {% if item.estoque_zerado %}tabindex="-1" aria-disabled="true"{% endif %}>
+                   <i class="fas fa-arrow-right"></i> Ver Detalhes
+               </a>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

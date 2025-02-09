@@ -1,0 +1,12 @@
+python -m pip install --upgrade pip
+pip install --upgrade spyder
+pip freeze > requirements.txt
+
+-------------------------------------
+python 3.12.7
+-------------------------------------
+
+
+
+
+

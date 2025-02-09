@@ -1,0 +1,55 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<div class="search-container"> 
+    <form method="POST" class="form-inline"> <!-- Formulário para os filtros de movimentação -->
+        {{ form.hidden_tag() }} <!-- Necessário para CSRF protection -->
+    
+        <!-- Filtro por produto -->
+        <label for="produto_id">Produto:</label> <!-- Rótulo para o campo de filtro de produto -->
+        {{ form.produto_id(class="form-control") }} <!-- Campo de seleção para escolher o produto -->
+        
+        <!-- Filtro por tipo de movimentação -->
+        <label for="tipo_movimentacao">Tipo:</label> <!-- Rótulo para o campo de filtro de tipo de movimentação -->
+        {{ form.tipo_movimentacao(class="form-control") }} <!-- Campo de seleção para escolher o tipo de movimentação -->
+        
+        <!-- Botão para enviar o formulário e aplicar os filtros -->
+        <button type="submit" class="btn">Filtrar</button>
+    </form>
+</div>
+
+<!-- Tabela de movimentações -->
+<table id="selectLine">
+    <tr>
+        <th>Produto</th> <!-- Coluna para o nome do produto -->
+        <th>Quantidade</th> <!-- Coluna para a quantidade do produto movido -->
+        <th>Tipo</th> <!-- Coluna para o tipo de movimentação (entrada ou saída) -->
+        <th>Valor R$</th> <!-- Coluna para o preço de custo -->        
+        <th>Data</th> <!-- Coluna para a data da movimentação -->
+    </tr>
+
+    {% for movimentacao in movimentacoes %}
+    <tr>
+        <!-- Exibe as informações da movimentação -->
+        <td>{{ movimentacao.produto }}</td> <!-- Nome do produto -->
+        <td>{{ movimentacao.quantidade }}</td> <!-- Quantidade movimentada -->
+        <td>
+            <!-- Exibe o ícone e o tipo de movimentação (entrada ou saída) -->
+            {% if movimentacao.tipo == 'entrada' %}
+                <i class="fa fa-arrow-circle-down" style="color: orange;" title="Entrada"></i> <!-- Ícone de entrada -->
+            {% elif movimentacao.tipo == 'saida' %}
+                <i class="fa fa-arrow-circle-up" style="color: green;" title="Saída"></i> <!-- Ícone de saída -->
+            {% endif %}
+            {{ movimentacao.tipo }} <!-- Tipo de movimentação (entrada ou saída) -->
+        </td>
+        <td>{{ movimentacao.valor | round(2) }}</td> <!-- Preço de custo -->        
+        <td>{{ movimentacao.data }}</td> <!-- Data da movimentação -->
+    </tr>
+    {% endfor %}
+</table>
+
+<!-- Script para funcionalidades adicionais -->
+<script src="{{ url_for('static', filename='js/admin/ver_movimento.js') }}"></script>
+
+{% endblock %}

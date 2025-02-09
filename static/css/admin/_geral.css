@@ -1,0 +1,684 @@
+/* ======================================
+   RESET DE ESTILOS
+   ====================================== */
+* {
+    margin: 0; /* Remove margens padrão */
+    padding: 0; /* Remove espaçamento interno padrão */
+    box-sizing: border-box; /* Inclui borda e padding no tamanho total do elemento */
+}
+
+/* ======================================
+   ESTILOS GERAIS
+   ====================================== */
+   
+h1 {
+    color: #4CAF50; /* Título em verde claro */
+    font-size: 24px; /* Tamanho do texto do título */
+    margin-bottom: 20px;
+}
+
+
+body {
+    font-family: Arial, sans-serif; /* Define a fonte padrão */
+    background-color: #f4f4f4; /* Fundo cinza claro */
+    color: #333; /* Texto cinza escuro */
+    padding-left: 270px; /* Espaçamento à esquerda do conteúdo */
+    padding-right: 20px; /* Espaçamento à esquerda do conteúdo */
+    padding-top: 10px; /* Espaçamento superior */   
+    
+}
+
+
+/* ======================================
+   Menssagens
+   ====================================== */
+   
+/* Estilo para a área de mensagens flash */
+.flash-messages-container {
+    position: relative;
+    height: 25px; /* Espaço fixo para as mensagens */
+    margin-bottom: 1rem; /* Espaço entre as mensagens e o formulário */
+    overflow: hidden; /* Esconde qualquer conteúdo que ultrapasse o limite */
+    display: flex;
+    align-items: center; /* Centraliza o conteúdo verticalmente */
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    background-color: transparent; /* Fundo invisível */
+    border: none; /* Remove a borda */
+    width: 100%; /* O contêiner ocupa toda a largura disponível */
+    box-sizing: border-box; /* Inclui padding e borda no tamanho total */
+}
+
+/* Estilo para mensagens específicas */
+.flash {
+    padding: 0.5rem 1rem;
+    width: 100%; /* A mensagem ocupa toda a largura do contêiner */
+    text-align: center; /* Centraliza o texto horizontalmente */
+    font-size: 0.9rem;
+    border-radius: 5px;
+}
+
+/* Mensagem de sucesso */
+.flash.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* Mensagem de erro */
+.flash.error,
+.flash.danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+
+/* ======================================
+   NAVEGAÇÃO SUPERIOR
+   ====================================== */
+
+/* Estilo para o menu no topo */
+.top-menu {
+    display: flex; /* Transforma em flex container */
+    align-items: center; /* Alinha os itens verticalmente ao centro */
+    justify-content: space-between; /* Espaça os itens horizontalmente */
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    
+}
+
+.top-menu h1 {
+    margin: 0; /* Remove o espaço extra do <h1> */
+    font-size: 20px; /* Ajuste o tamanho do texto, se necessário */
+}
+
+.top-menu-links {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.top-menu-links li {
+    margin-right: 15px;
+}
+
+.top-menu-links a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.top-menu-links a:hover {
+    background-color: #ddd;
+}
+
+.top-menu-links a.disabled {
+    pointer-events: none;
+    color: #999;
+    cursor: not-allowed;
+}
+
+/* Estilo para o botão "Voltar" */
+.top-menu-links a i {
+    margin-right: 5px;
+}
+
+
+
+/* ======================================
+   NAVEGAÇÃO LATERAL
+   ====================================== */
+/* Barra lateral - Menu atualizado com estilo do CSS1 */
+nav {
+    background-color: #343a40; /* Fundo cinza escuro */
+    width: 250px; /* Largura da barra lateral */
+    position: fixed; /* Fixa a barra lateral */
+    top: 0; /* Fixa no topo */
+    left: 0; /* Fixa à esquerda */
+    height: 100vh; /* Ocupa toda a altura da tela */
+    padding-top: 20px; /* Espaçamento superior */
+    padding: 20px; /* Espaçamento interno geral */
+    color: #fff;
+}
+
+nav h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+nav ul {
+    list-style: none; /* Remove marcadores da lista */
+    padding: 0; /* Remove padding */
+}
+
+nav ul li {
+    margin: 20px 0; /* Espaçamento entre os itens */
+}
+
+nav ul li a {
+    color: #ccc; /* Texto cinza claro */
+    text-decoration: none; /* Remove sublinhado */
+    font-size: 1.1rem; /* Tamanho de fonte */
+    display: flex; /* Flexbox para ícones e texto alinhados */
+    align-items: center; /* Alinha o ícone e o texto verticalmente */
+    gap: 10px; /* Espaçamento entre o ícone e o texto */
+    padding: 10px; /* Espaçamento interno dos links */
+    border-radius: 5px; /* Bordas arredondadas */
+    transition: 0.3s; /* Transição suave de cor */
+}
+
+nav ul li a:hover, nav ul li a.active {
+    color: #fff; /* Texto branco ao passar o mouse ou quando ativo */
+    background: #495057; /* Fundo cinza escuro no hover */
+}
+
+nav ul li a i {
+    font-size: 1.5rem; /* Tamanho do ícone */
+}
+
+/* Para garantir um bom espaçamento entre o ícone e o texto */
+nav ul li a i {
+    margin-right: 10px; /* Espaçamento entre o ícone e o texto */
+}
+
+/* Customização de links quando ativo */
+nav ul li a.active {
+    background-color: #4CAF50; /* Fundo verde claro quando ativo */
+    color: #fff; /* Texto branco quando ativo */
+}
+
+nav ul li a:hover {
+    background-color: #4CAF50; /* Fundo verde claro ao passar o mouse */
+}
+
+
+/* -------- Submenu ------------------------------------- */ 
+ 
+/* Oculta o submenu por padrão */
+.submenu {
+    display: none; /* Submenu não aparece inicialmente */
+    padding-left: 20px; /* Recuo para alinhar como um submenu */
+}
+
+/* Exibe o submenu quando a classe 'open' está ativa */
+.submenu.open {
+    display: block; /* Exibe o submenu */
+}
+
+/* Ícone para expandir/contrair submenu */
+.toggle-icon {
+    margin-left: auto; /* Alinha o ícone à direita */
+    transition: transform 0.3s ease; /* Transição suave */
+}
+
+/* Rota o ícone ao abrir o submenu */
+.submenu.open + .toggle-icon {
+    transform: rotate(180deg); /* Ícone aponta para cima */
+}
+
+
+
+/* ======================================
+   SEARCH CONTAINER
+   ====================================== */
+
+.search-container {
+    background-color: #343a40; /* Fundo cinza mais escuro */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 8px; /* Cantos arredondados */
+    width: auto;
+    display: flex;
+    justify-content: flex-start; /* Alinha todo o conteúdo à esquerda */
+    align-items: center; /* Garante alinhamento vertical */
+    margin-bottom: 20px; /* Espaçamento inferior para separação */
+    color: #fff; /* Cor do texto branco */
+}
+
+.search-container form {
+    display: flex;
+    align-items: center; /* Alinha os itens verticalmente */
+    justify-content: flex-start; /* Garante alinhamento horizontal dentro do formulário */
+}
+
+.search-container .form-control {
+    margin-right: 10px; /* Espaçamento entre o campo e o botão */
+    width: auto; /* Ajusta automaticamente ao tamanho do texto */
+    min-width: 200px; /* Define um tamanho mínimo para o select */
+    max-width: 100%; /* Garante que ele não exceda o limite */
+}
+
+.search-container .btn {
+    background-color: #007bff; /* Azul padrão para contraste */
+    color: #fff; /* Cor do texto */
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.search-container .btn:hover {
+    background-color: #0056b3; /* Cor mais escura ao passar o mouse */
+}
+
+
+/* ======================================
+   TABELA - LINHA SELECIONADA
+   ====================================== */
+
+tr.selected {
+    background-color: #4CAF50 !important; /* Cor de fundo verde claro para a linha selecionada */
+    color: white !important; /* Garante que o texto seja branco */
+}
+
+/* Para adicionar uma animação suave quando a linha for selecionada */
+tr.selected {
+    transition: background-color 0.3s ease;
+}
+
+/* Alteração na cor ao passar o mouse na linha selecionada */
+tr.selected:hover {
+    background-color: #45a049 !important; /* Cor mais escura ao passar o mouse */
+    cursor: pointer; /* Mantém o cursor pointer */
+}
+
+/* As células não devem ter fundo transparente */
+td {
+    background-color: transparent !important; /* Garante que o fundo das células seja transparente */
+    color: black; /* Texto preto */
+}
+
+/* Para garantir que as células dentro da linha selecionada não fiquem com texto invisível */
+tr.selected td {
+    color: white !important; /* Texto branco nas células selecionadas */
+}
+
+
+/* ======================================
+   TABELAS
+   ====================================== */
+table {
+    width: calc(100% - 40px); /* Ajusta a largura para ocupar o restante da tela, considerando as margens */
+    border-collapse: collapse; /* Remove espaços entre bordas */
+    margin-top: 10px; /* Espaçamento superior */
+    margin-left: 20px; /* Ajusta a margem à esquerda para alinhamento com o search container */
+    margin-right: 10px; /* Espaçamento à direita */
+    background-color: white; /* Fundo branco para toda a tabela */
+    display: block; /* Para permitir o scroll */
+    max-height: 900px; /* Altura máxima da tabela para permitir rolagem */
+    overflow-y: auto; /* Permite rolar a tabela verticalmente */
+}
+
+table, th, td {
+    border: 1px solid #ddd; /* Bordas cinza claro */
+}
+
+th {
+    background-color: #343a40; /* Fundo azul escuro */
+    color: #fff; /* Texto branco */
+    padding: 10px; /* Espaçamento interno */
+    text-align: left; /* Alinha texto à esquerda */
+    position: sticky; /* Torna o cabeçalho fixo */
+    top: 0; /* Fixa no topo */
+    z-index: 1; /* Garante que o cabeçalho fique sobre o conteúdo */
+}
+
+td {
+    background-color: white; /* Fundo branco nas células */
+    padding: 10px; /* Espaçamento interno */
+    text-align: left; /* Alinha texto à esquerda */
+}
+
+tr:hover {
+    background-color: #e0f7fa; /* Fundo azul claro ao passar o mouse */
+    cursor: pointer; /* Mostra o cursor pointer ao passar o mouse */
+}
+
+/* Barra lateral fixa dentro da tabela */
+.td-barra-lateral {
+    position: sticky; /* Fixa a coluna */
+    left: 0; /* Fixa na lateral esquerda */
+    background-color: #f1f1f1; /* Cor de fundo para a barra lateral */
+    z-index: 2; /* Fica sobre as células normais */
+}
+
+
+/* ======================================
+   JANELA POP UP
+   ====================================== */
+.modal {
+    display: none; /* Esconde o modal por padrão */
+    position: fixed; /* Fixa na tela */
+    z-index: 1000; /* Garante que o modal esteja na frente */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Permite rolar caso necessário */
+    background-color: rgba(0, 0, 0, 0.4); /* Fundo semi-transparente */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Centraliza verticalmente */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Define a largura do modal */
+    max-width: 600px; /* Largura máxima */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* ======================================
+   FORMULÁRIOS
+   ====================================== */
+/* Estilos para o formulário */
+form {
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 8px; /* Bordas arredondadas */
+    width: 50%; /* Largura do formulário */
+    margin: 0 auto; /* Centraliza o formulário */
+}
+
+/* Estilo específico para o formulário com ID 'form-sem-espacamento' */
+#form-reduzir-espacamento {
+    padding: 5px; /* Remove o espaçamento interno */
+}
+
+form.backwite {
+    background-color: white; /* Fundo branco */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra leve ao redor do formulário */
+}
+
+/* Estilo para o formulário com a classe inline-form */
+.inline-form {
+    display: inline; /* Faz com que o formulário seja exibido em linha */
+    margin: 0; /* Remove a margem para evitar espaçamento extra */
+}
+
+/* Estilos para o formulário de busca em linha */
+.form-inline {
+    display: flex; /* Usa flexbox para alinhar os itens na horizontal */
+    justify-content: flex-start; /* Alinha os itens à esquerda */
+    gap: 10px; /* Espaço entre o campo de pesquisa e o botão */
+    align-items: center; /* Alinha verticalmente os itens */   
+    width: auto; /* Remove a largura fixa */
+    margin: 0; /* Garante que não haverá espaçamento adicional */
+}
+
+/* Ajusta a aparência do campo de pesquisa */
+.form-inline .form-control {
+    width: 150px; /* Defina a largura do campo de pesquisa */
+    margin-bottom: 0; /* Remove a margem inferior */
+}
+
+/* Ajuste para o botão de busca */
+.form-inline button {
+    margin-top: 0; /* Remove o espaçamento superior do botão */
+}
+
+/* Adiciona margem abaixo do campo de descrição */
+form .form-control {
+    margin-bottom: 25px; /* Ajuste o valor conforme necessário */
+}
+
+/* ======================================
+   LABEL
+   ====================================== */
+
+label {
+    display: block; /* Exibe como bloco */
+    margin-bottom: 10px; /* Espaçamento inferior */
+    font-weight: bold; /* Texto em negrito */
+}
+
+
+/* ======================================
+   INPUT
+   ====================================== */
+.hidden-input {
+    display: none;
+}
+
+
+input[type="text"], input[type="number"]{
+    width: 100%; /* Largura total do elemento */
+    padding: 10px; /* Espaçamento interno */
+    margin-bottom: 20px; /* Espaçamento inferior */
+    border: 1px solid #ddd; /* Bordas cinza claro */
+    border-radius: 5px; /* Bordas arredondadas */
+    background-color: white; /* Fundo branco */
+    font-size: 16px; /* Tamanho da fonte */
+    margin-right: 10px; /* espaco direito */
+}
+
+
+#preco {    
+    width: 300px; /* Exemplo de ajuste de largura */
+}
+
+#quantidade {    
+    width: 100px; /* Exemplo de ajuste de largura */
+}
+
+#medida {    
+    width: 150px; /* Exemplo de ajuste de largura */
+}
+
+
+/* ======================================
+   TEXTAREA
+   ====================================== */
+
+#descricao {
+    width: 100%;       /* Faz o campo ocupar toda a largura do seu container */
+    height: 200px;     /* Define a altura (pode ajustar conforme necessário) */
+    font-size: 18px;   /* Ajusta o tamanho da fonte */
+    padding: 10px;  /* Adiciona espaçamento interno */
+}
+
+
+/* ======================================
+   SELECT
+   ====================================== */
+
+select {
+    width: 100%; /* Largura total do elemento */
+    padding: 10px; /* Espaçamento interno */
+    margin-bottom: 20px; /* Espaçamento inferior */
+    border: 1px solid #ddd; /* Bordas cinza claro */
+    border-radius: 5px; /* Bordas arredondadas */
+    background-color: white; /* Fundo branco */
+    font-size: 16px; /* Tamanho da fonte */
+    margin-right: 10px; /* espaco direito */   
+    max-width: 250px; /* Define a largura máxima do select */
+}
+
+
+
+/* ======================================
+   BOTÕES
+   ====================================== */
+   
+/* Estilos gerais para botões */
+.btn {
+    display: inline-flex; /* Exibe o botão como um item em linha com flexbox */
+    align-items: center; /* Alinha o texto e o ícone verticalmente */
+    padding: 10px 20px; /* Espaçamento interno */
+    font-size: 14px; /* Tamanho do texto */
+    border-radius: 5px; /* Bordas arredondadas */
+    background-color: #495057;  /* Cinza Claro */
+    text-decoration: none; /* Remove sublinhado de links */    
+    color: white; /* Texto branco */
+    text-align: center; /* Centraliza o conteúdo do botão */
+    cursor: pointer; /* Cursor de ação */
+    margin-top: 20px; /* Espaçamento superior para distanciar do conteúdo */ 
+    margin-right: 10px; /* espaco direito */  
+    border: none; /* Remove borda de botões */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Suaviza efeito hover */
+}
+
+.custom-btn {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+/* Hover genérico com aumento de tamanho */
+.btn:hover {
+    background-color: #343a40; /* Fundo cinza escuro */
+    transform: scale(1.05); /* Aumenta 5% o tamanho do botão */
+}
+
+/* Botões de add com aumento de tamanho */
+.btn-default {
+    background-color: #4CAF50; /* Fundo verde claro */
+}
+
+.btn-default:hover {
+    background-color: #45a049; /* Verde escuro ao passar o mouse */
+    transform: scale(1.05); /* Aumenta 5% o tamanho do botão */
+}
+
+/* Botões de alerta (atualizar) com aumento de tamanho */
+.btn-warning {
+    background-color: #FFC107; /* Fundo amarelo */
+}
+
+.btn-warning:hover {
+    background-color: #FFB300; /* Fundo amarelo mais escuro no hover */
+    transform: scale(1.05); /* Aumenta 5% o tamanho do botão */
+}
+
+/* Botões de perigo (deletar) com aumento de tamanho */
+.btn-danger {
+    background-color: #DC3545; /* Fundo vermelho */
+}
+
+.btn-danger:hover {
+    background-color: #C82333; /* Fundo vermelho mais escuro no hover */
+    transform: scale(1.05); /* Aumenta 5% o tamanho do botão */
+}
+
+
+/* Botões de cancelar com aumento de tamanho */
+.btn-cancelar {
+    background-color: #003366; /* Fundo azul escuro */
+    
+}
+
+.btn-cancelar:hover {
+    background-color: #002244; /* Fundo azul mais escuro no hover */
+    transform: scale(1.05); /* Aumenta 5% o tamanho do botão */
+}
+
+
+/* Estilo para botões com ícones */
+.btn i {
+    margin-right: 8px; /* Espaço entre ícone e texto */
+}
+
+btn esp{
+    margin-left: 15px  
+}
+
+
+/* Estilo específico para o botão de limpar campo*/ 
+
+.clear-btn {
+    
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #888;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+/* Hover genérico com aumento de tamanho */
+.clear-btn:hover {
+    
+    transform: scale(1.2); /* Aumenta 5% o tamanho do botão */    
+}
+
+
+/* Botao data grid */
+
+.btn-dg{
+    display: inline-flex; /* Exibe o botão como um item em linha com flexbox */
+    align-items: center; /* Alinha o texto e o ícone verticalmente */
+    padding: 5px 5px; /* Espaçamento interno */
+    font-size: 12px; /* Tamanho do texto */
+    border-radius: 5px; /* Bordas arredondadas */
+    text-decoration: none; /* Remove sublinhado de links */    
+    color: white; /* Texto branco */
+    text-align: center; /* Centraliza o conteúdo do botão */
+    cursor: pointer; /* Cursor de ação */     
+    border: none; /* Remove borda de botões */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Suaviza efeito hover */ 
+       
+}
+
+/* Estilo para botões com ícones */
+.btn-dg i {
+    margin-right: 0px; /* Espaço entre ícone e texto */
+}
+
+/* Estilo para botões da Pop Up */
+.btn-ver-descricao {
+    background-color: #007B9E; /* Azul mais escuro */
+    color: white; /* Texto branco */
+    padding: 5px 10px; /* Ajusta o espaçamento interno */
+    border: none; /* Remove a borda padrão */
+    border-radius: 4px; /* Bordas arredondadas */
+    cursor: pointer; /* Mostra o cursor de clique */
+    font-size: 14px; /* Ajusta o tamanho da fonte */
+    transition: background-color 0.3s ease; /* Efeito suave ao passar o mouse */
+}
+
+.btn-ver-descricao:hover {
+    background-color: #005F7A; /* Azul ainda mais escuro ao passar o mouse */
+}
+
+
+/* ======================================
+   Desabilita botoes
+   ====================================== */
+/* Estilização para botões desativados */
+.btn:disabled {
+    background-color: #6c757d; /* Cor de fundo para botão desativado */
+    color: #adb5bd; /* Cor do texto para botão desativado */
+    cursor: not-allowed; /* Mostra o cursor "não permitido" */
+    opacity: 0.65; /* Reduz a opacidade para indicar desativado */
+}
+
+
+/* Contêiner do botão de upload */
+.upload-container {
+    margin-top: 15px; /* Espaço entre o campo Subcategoria e o botão */
+    display: block; /* Garante que o botão fique em uma nova linha */
+}
+
+/* ======================================
+   RODAPÉ
+   ====================================== */
+footer {
+    text-align: center; /* Centraliza o texto */
+    margin-top: 50px; /* Espaçamento superior */
+    font-size: 14px; /* Tamanho do texto */
+    color: #777; /* Texto cinza médio */
+}

@@ -1,0 +1,49 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/inserir_categoria.css') }}">
+
+
+<div class="container mt-5">
+    <form method="POST" action="{{ url_for('segmento.atualizar_categoria', categoria_id=categoria.id) }}" class="backwite">
+        {{ form.hidden_tag() }}  <!-- Necessário para CSRF protection -->
+
+        <!-- Campo para o nome da categoria -->
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            {{ form.nome(class="form-control") }}  <!-- Preenche com o nome atual -->
+        </div>
+        
+        <!-- Select do ícone da categoria -->
+        <div class="mb-3">        
+            <label for="icone" class="form-label">Ícone</label>
+            {{ form.icone(class="form-control", id="iconeSelect") }} <!-- Renderiza o campo select para 'icone' -->           
+             <div id="iconePreview">
+                 <!-- Ícone será exibido aqui -->
+             </div>             
+        </div>    
+
+        <!-- Campo para a descrição da categoria -->
+        <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição</label>
+            {{ form.descricao(class="form-control") }}  <!-- Preenche com a descrição atual -->
+        </div>       
+
+        <!-- Botão de submit para atualizar a categoria -->
+        <button type="submit" class="btn btn-default">
+            <i class="fas fa-save"></i> Atualizar Categoria
+        </button>
+
+        <!-- Botão para voltar -->
+        <a href="{{ url_for('segmento.ver_categoria') }}" class="btn btn-cancelar">
+            <i class="fas fa-times"></i> Cancelar
+        </a>
+    </form>
+</div>
+
+
+<script src="{{ url_for('static', filename='js/admin/inserir_categoria.js') }}"></script>
+
+{% endblock %}
+

@@ -1,0 +1,84 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/inserir_produto.css') }}">
+
+<form method="POST" enctype="multipart/form-data" class="backwite">
+    {{ form.hidden_tag() }}
+    
+    <!-- Campo Status -->
+    <label for="status">Status:</label>
+    {{ form.status(class="form-control", id="status") }}  
+    
+    <!-- Campo Nome -->
+    <label for="nome">Nome:</label>
+    {{ form.nome(class="form-control", id="nome") }} 
+
+    <!-- Campo Descrição -->
+    <label for="descricao">Descrição:</label>
+    {{ form.descricao(class="form-control", id="descricao") }}   
+        
+    <!-- Campo Margem de Lucro -->    
+    <div class="input-container">
+        {{ form.margem_lucro.label }}
+        {{ form.margem_lucro(class="form-control", id="preco", required=True) }}
+        <button type="button" class="clear-btn" onclick="limparCampoDinamico(this)" title="Limpar">
+            <i class="fas fa-times-circle"></i>
+        </button>       
+    </div>    
+
+    <!-- Campo Categoria -->
+    <label for="categoria_id">Categoria:</label>
+    {{ form.categoria_id(class="form-control", id="categoria_id", onchange="buscarSubcategorias(this.value)") }}
+    <a href="{{ url_for('segmento.inserir_categoria') }}" class="btn btn-default">
+        <i class="fas fa-folder-plus"></i>Inserir Nova Categoria
+    </a>   
+
+    <!-- Campo Subcategoria -->
+    <label for="subcategoria_id">Subcategoria:</label>
+    {{ form.subcategoria_id(class="form-control", id="subcategoria_id") }}
+    <a href="{{ url_for('segmento.inserir_subcategoria') }}" class="btn btn-default">
+        <i class="fas fa-folder-plus"></i>Inserir Nova Subcategoria
+    </a>   
+
+    <!-- Campo Peso -->
+    <label for="peso">Peso (kg):</label>
+    {{ form.peso(class="form-control", id="medida", required=True) }}
+
+    <!-- Campo Largura -->
+    <label for="largura">Largura (cm):</label>
+    {{ form.largura(class="form-control", id="medida", required=True) }}
+
+    <!-- Campo Altura -->
+    <label for="altura">Altura (cm):</label>
+    {{ form.altura(class="form-control", id="medida", required=True) }}
+
+    <!-- Campo Comprimento -->
+    <label for="comprimento">Comprimento (cm):</label>
+    {{ form.comprimento(class="form-control", id="medida", required=True) }}
+
+    <!-- Botão para Upload de Imagens -->
+    <div class="upload-container">
+        <label for="imagens" class="btn">
+            <i class="fas fa-image"></i> Escolher Arquivos
+        </label>
+        {{ form.imagens(class="hidden-input", id="imagens", onchange="previewImages(event)") }}
+    </div>
+    <div id="visor-imagens" class="image-preview-container">
+        <!-- Pré-visualização das imagens -->
+    </div> 
+
+    <!-- Botão de Submit -->
+    <button type="submit" class="btn btn-default" id="submit-button">
+        <i class="fas fa-save"></i> Salvar
+    </button>
+
+    <a href="{{ url_for('estoque.ver_estoque') }}" class="btn btn-cancelar">
+        <i class="fas fa-times"></i> Cancelar
+    </a>
+</form>
+
+<script src="{{ url_for('static', filename='js/admin/inserir_produto.js') }}"></script>
+
+{% endblock %}

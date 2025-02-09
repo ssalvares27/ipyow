@@ -1,0 +1,64 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/index.css') }}">
+    
+<div class="search-container">
+    <!-- Filtro com Formulário -->
+    <form method="GET" action="{{ url_for('dashboard.index') }}" class="form-inline">
+        <label for="ano" class="form-label">Selecione o Ano</label>
+        {{ form.ano(class="form-control", id="ano") }}
+
+        <label for="mes" class="form-label">Selecione o Mês</label>
+        {{ form.mes(class="form-control", id="mes") }}
+
+        <button type="submit" class="btn btn-default">Aplicar Filtro</button>
+    </form>
+</div>
+    
+<div class="container mt-4">
+    <h2>Indicadores Financeiros</h2>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Investimento Total</h5>
+                    <p class="card-text">R$ {{ dadosFinanceiros.investimentoTotal|default(0) }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Lucro Total</h5>
+                    <p class="card-text">R$ {{ dadosFinanceiros.lucroTotal|default(0) }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Vendas no Período</h5>
+                    <p class="card-text">{{ dadosFinanceiros.vendasMes|default(0) }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5">       
+        <canvas id="financeChart"></canvas>
+    </div>
+</div>
+
+<script>
+    const dadosFinanceiros = {{ dadosFinanceiros | tojson }};
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/admin/index.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'site/base.html' %}
+
+{% block content %}
+<div class="container form-page">
+    <h2>Cadastro</h2>  
+
+    <form action="{{ url_for('loja.register') }}" method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+        
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" required>
+        
+        <label for="confirmar_senha">Confirmar Senha:</label>
+        <input type="password" id="confirmar_senha" name="confirmar_senha" required>
+     
+        <label for="cep">CEP:</label>
+        <input type="text" id="cep" name="cep" required onblur="buscarEndereco()" maxlength="10" oninput="mascaraCep(this)">
+
+        <!-- Campos de Endereço -->
+        <label for="endereco">Endereço:</label>
+        <input type="text" id="endereco" name="endereco" disabled placeholder="Ex: Rua João, 123 - Bairro Centro">
+        <small>Por favor, inclua o número e o bairro no endereço.</small>
+
+        <label for="cidade">Cidade:</label>
+        <input type="text" id="cidade" name="cidade" disabled>
+
+        <label for="estado">Estado:</label>
+        <input type="text" id="estado" name="estado" disabled>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename='js/site/register.js') }}"></script>
+
+{% endblock %}

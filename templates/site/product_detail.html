@@ -1,0 +1,74 @@
+{% extends "site/base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/site/product_detail.css') }}">
+
+<div class="product-detail-container">
+    <div class="container">
+        <div class="product-detail">
+            <!-- Coluna das Imagens -->
+            <div class="product-images">
+                <button class="arrow-left" disabled>&lt;</button> <!-- Botão da esquerda -->
+                <div class="image-carousel">
+                    <div class="image-track">
+                        {% for imagem in produto.imagens %}
+                            <img src="{{ url_for('static', filename=imagem.caminho_imagem) }}" alt="{{ produto.nome }}">
+                        {% endfor %}
+                    </div>
+                </div>
+                <button class="arrow-right" disabled>&gt;</button> <!-- Botão da direita -->
+            </div>
+            
+            <!-- Coluna das Informações -->
+            <div class="product-info">
+                <h1 class="product-title">{{ produto.nome }}</h1>
+                <p class="product-description">{{ produto.descricao }}</p>
+                <p class="product-price">Preço: R$ {{ "%.2f"|format(preco_venda) }}</p>
+                <p class="product-stock">
+                    Quantidade em Estoque:
+                    {% set quantidade_no_carrinho = session.get('carrinho', {}).get(produto.id|string, {}).get('quantidade', 0) %}
+                    {% set estoque_disponivel = produto.calcular_quantidade_estoque() - quantidade_no_carrinho %}
+                    {{ estoque_disponivel }}
+                </p>             
+
+                
+                <!-- Botão de compra -->
+                <form action="{{ url_for('cart.adicionar_ao_carrinho', produto_id=produto.id) }}" method="POST" class="purchase-form">
+                    <input type="hidden" name="produto_id" value="{{ produto.id }}">
+                    <label for="quantidade">Quantidade:</label>
+                    {% if estoque_disponivel > 0 %}
+                        <input type="number" id="quantidade" name="quantidade" min="1" max="{{ estoque_disponivel }}" required>
+                        {% if not session.get('user') %}
+                            <p class="login-required">Você precisa <a href="{{ url_for('loja.login') }}">fazer login</a> para adicionar produtos ao carrinho.</p>
+                        {% else %}
+                            <button type="submit" class="btn btn-default">
+                                <i class="fas fa-shopping-cart"></i> Adicionar ao Carrinho
+                            </button>
+                        {% endif %}
+                    {% else %}
+                        <input type="number" id="quantidade" name="quantidade" min="1" max="0" disabled>
+                        <p class="no-stock-message">Sem estoque disponível.</p>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+        
+        <!-- Informações adicionais -->
+        <div class="additional-info">
+            <h2>Mais Detalhes</h2>
+            <ul>
+                <li>Código de Barras: {{ produto.codigo_barra }}
+                    <img src="{{ url_for('static', filename=produto.imagem_codigo_barra) }}" alt="Código de Barras">
+                </li>
+                <li>Status: {{ produto.status }}</li>
+                <li>Subcategoria: {{ produto.subcategoria.nome }}</li>
+                <li>Categoria: {{ produto.subcategoria.categoria.nome }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/site/product_detail.js') }}"></script>
+
+{% endblock %}

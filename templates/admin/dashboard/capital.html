@@ -1,0 +1,46 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/capital.css') }}">
+
+<div class="container">
+<h4> Taxa Marketplace: {{ taxa_marketplace|br }}%</h4>
+  
+
+    <div class="row">
+        <!-- Cartão para Lucro Total -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Lucro Total</h5>
+                    <p class="card-text">{{ lucro_total_estoque|br }}</p>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="lucroTotalChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Cartão para Lucro Total com Taxas -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Lucro Total com Taxas</h5>
+                    <p class="card-text">{{ lucro_total_com_taxa|br }}</p>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="lucroTotalComTaxaChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Dados ocultos para o JavaScript -->
+<div id="lucroTotalData" data-lucro="{{ lucro_total_estoque }}"></div>
+<div id="lucroTotalComTaxaData" data-lucro="{{ lucro_total_com_taxa }}"></div>
+
+<!-- Inclua o JavaScript -->
+<script src="{{ url_for('static', filename='js/admin/capital.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,607 @@
+/* ======================================
+   GERAL
+   ====================================== */
+
+body, ul, li, a, form, input, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+
+/* ======================================
+   SEÇÃO DE LOGIN
+   ====================================== */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.dropdown-menu .dropdown-item {
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #f4f4f4;
+    color: #000;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* ======================================
+   CARRINHO DE COMPRAS
+   ====================================== */
+
+/* Estilo para o ícone do carrinho */
+.cart-icon {
+    color: #fff;
+    font-size: 18px;
+    position: relative;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.cart-icon:hover {
+    color: #1abc9c;
+}
+
+/* Estilo para o contador de itens no carrinho */
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background: #e74c3c;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 50%;
+    padding: 2px 6px;
+}
+
+/* ======================================
+   MENSSAGENS
+   ====================================== */
+   
+/* Estilo para a área de mensagens flash */
+.flash-messages-container {
+    position: relative;
+    height: 25px; /* Espaço fixo para as mensagens */
+    margin-bottom: 1rem; /* Espaço entre as mensagens e o formulário */
+    overflow: hidden; /* Esconde qualquer conteúdo que ultrapasse o limite */
+    display: flex;
+    align-items: center; /* Centraliza o conteúdo verticalmente */
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    background-color: transparent; /* Fundo invisível */
+    border: none; /* Remove a borda */
+    width: 100%; /* O contêiner ocupa toda a largura disponível */
+    box-sizing: border-box; /* Inclui padding e borda no tamanho total */
+}
+
+/* Estilo para mensagens específicas */
+.flash {
+    padding: 0.5rem 1rem;
+    width: 100%; /* A mensagem ocupa toda a largura do contêiner */
+    text-align: center; /* Centraliza o texto horizontalmente */
+    font-size: 0.9rem;
+    border-radius: 5px;
+}
+
+/* Mensagem de sucesso */
+.flash.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* Mensagem de erro */
+.flash.error,
+.flash.danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Mensagem de informação */
+.flash.info {
+    background-color: #cce5ff;
+    color: #004085;
+    border: 1px solid #b8daff;
+}
+
+/* Mensagem de aviso (warning) */
+.flash.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+
+/* ======================================
+   CONTAINER MENU
+   ====================================== */
+
+.navbar {
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo img {
+    height: 64px;
+}
+
+/* ======================================
+   MENU PRINCIPAL
+   ====================================== */
+
+.menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.menu li {
+    position: relative;
+    margin-left: 20px;
+}
+
+/* Links do menu principal */
+.menu a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.menu a:hover {
+    color: #1abc9c;
+}
+
+/* Barra de pesquisa e carrinho */
+.search-cart {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar {
+    display: flex;
+    margin-right: 20px;
+}
+
+.search-bar input {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    font-size: 14px;
+}
+
+.search-bar button {
+    background-color: #1abc9c;
+    border: none;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: #16a085;
+}
+
+
+/* ======================================
+   BARRA DE CATEGORIA
+   ====================================== */
+
+/* Fundo para o container da barra de categorias */
+.category-bar .container {
+    display: flex;
+    justify-content: center; /* Centraliza os itens no meio da barra */
+    overflow-x: auto;
+    background-color: #ecf0f1; /* Cor de fundo do container */
+    padding-top: 20px; /* Espaçamento interno do topo para dar distância ao menu */
+    padding-bottom: 25px; /* Opcional: pode ajustar para dar mais ou menos espaçamento */
+}
+
+/* Ajustes dos itens da lista - Adiciona um pequeno espaçamento entre os itens */
+.category-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Pequeno espaçamento entre os itens */
+    padding: 0;
+    margin: 0;
+    width: auto; /* Ajusta a largura da lista para o conteúdo */
+}
+
+/* Ajustes de estilo para os itens da lista */
+.category-list li {
+    text-align: center;
+    flex-grow: 0; /* Impede que os itens cresçam para ocupar o espaço disponível */
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo */
+    margin: 0; /* Remove qualquer margem extra */
+}
+
+/* Estilo dos links das categorias */
+.category-list a {
+    text-decoration: none;
+    color: #2c3e50;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: color 0.3s;
+}
+
+/* Altera a cor do ícone quando selecionado */
+.category-list a.selected i {
+    color: #1abc9c; /* Cor do ícone quando selecionado */
+}
+
+/* Efeito de hover no link */
+.category-list a:hover {
+    color: #1abc9c;
+}
+
+/* Estilo dos ícones */
+.category-list i {
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: #34495e;
+    transition: color 0.3s;
+}
+
+/* Efeito de hover no ícone */
+.category-list a:hover i {
+    color: #1abc9c;
+}
+
+
+
+
+/* ======================================
+   BOTÕES
+   ====================================== */
+   
+/* Estilos gerais para botões */
+.btn {
+    display: inline-flex; /* Exibe o botão como um item em linha com flexbox */
+    align-items: center; /* Alinha o texto e o ícone verticalmente */
+    justify-content: center; /* Centraliza horizontalmente o texto */
+    padding: 10px 20px; /* Espaçamento interno */
+    font-size: 14px; /* Tamanho do texto */
+    border-radius: 5px; /* Bordas arredondadas */
+    background-color: #495057;  /* Cinza Claro */
+    text-decoration: none; /* Remove sublinhado de links */    
+    color: white; /* Texto branco */
+    text-align: center; /* Centraliza o conteúdo do botão */
+    cursor: pointer; /* Cursor de ação */
+    margin: 20px 10px; /* Espaçamento: cima/baixo = 20px, esquerda/direita = 10px */
+    border: none; /* Remove borda de botões */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Suaviza efeito hover */
+    min-width: 120px; /* Define uma largura mínima para garantir um bom alinhamento */
+}
+
+
+/* Hover genérico com aumento de tamanho */
+.btn:hover {
+    background-color: #343a40; /* Fundo cinza escuro */
+    transform: scale(1.05); /* Aumenta 5% o tamanho do botão */
+}
+
+/* Botões de add com aumento de tamanho */
+.btn-default {
+    background-color: #1abc9c;  /* verde escuro ao */
+}
+
+.btn-default:hover {
+    background-color: #48d1af; /* Verde claro ao passar o mouse */
+    transform: scale(1.05); /* Aumenta 5% o tamanho do botão */
+}
+
+/* Botões de alerta (atualizar) com aumento de tamanho */
+.btn-warning {
+    background-color: #FFC107; /* Fundo amarelo */
+}
+
+.btn-warning:hover {
+    background-color: #FFB300; /* Fundo amarelo mais escuro no hover */
+    transform: scale(1.05); /* Aumenta 5% o tamanho do botão */
+}
+
+/* Botões de perigo (deletar) com aumento de tamanho */
+.btn-danger {
+    background-color: #DC3545; /* Fundo vermelho */
+}
+
+.btn-danger:hover {
+    background-color: #C82333; /* Fundo vermelho mais escuro no hover */
+    transform: scale(1.05); /* Aumenta 5% o tamanho do botão */
+}
+
+
+/* Botões de cancelar com aumento de tamanho */
+.btn-cancelar {
+    background-color: #003366; /* Fundo azul escuro */
+    
+}
+
+.btn-cancelar:hover {
+    background-color: #002244; /* Fundo azul mais escuro no hover */
+    transform: scale(1.05); /* Aumenta 5% o tamanho do botão */
+}
+
+/* botão custom  */
+.custom-btn {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+/* Estilo para botões com ícones */
+.btn i {
+    margin-right: 8px; /* Espaço entre ícone e texto */
+}
+
+btn esp{
+    margin-left: 15px  
+}
+
+
+/* Estilo específico para o botão de limpar campo*/ 
+
+.clear-btn {
+    
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #888;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+/* Hover genérico com aumento de tamanho */
+.clear-btn:hover {
+    
+    transform: scale(1.2); /* Aumenta 5% o tamanho do botão */    
+}
+
+
+/* Botao data grid */
+
+.btn-dg{
+    display: inline-flex; /* Exibe o botão como um item em linha com flexbox */
+    align-items: center; /* Alinha o texto e o ícone verticalmente */
+    padding: 5px 5px; /* Espaçamento interno */
+    font-size: 12px; /* Tamanho do texto */
+    border-radius: 5px; /* Bordas arredondadas */
+    text-decoration: none; /* Remove sublinhado de links */    
+    color: white; /* Texto branco */
+    text-align: center; /* Centraliza o conteúdo do botão */
+    cursor: pointer; /* Cursor de ação */     
+    border: none; /* Remove borda de botões */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Suaviza efeito hover */ 
+    
+       
+}
+
+/* Estilo para botões com ícones */
+.btn-dg i {
+    margin-right: 5px; /* Espaço entre ícone e texto */
+}
+
+/* Estilo para botões da Pop Up */
+.btn-ver-descricao {
+    background-color: #007B9E; /* Azul mais escuro */
+    color: white; /* Texto branco */
+    padding: 5px 10px; /* Ajusta o espaçamento interno */
+    border: none; /* Remove a borda padrão */
+    border-radius: 4px; /* Bordas arredondadas */
+    cursor: pointer; /* Mostra o cursor de clique */
+    font-size: 14px; /* Ajusta o tamanho da fonte */
+    transition: background-color 0.3s ease; /* Efeito suave ao passar o mouse */
+}
+
+.btn-ver-descricao:hover {
+    background-color: #005F7A; /* Azul ainda mais escuro ao passar o mouse */
+}
+
+
+/* ======================================
+   DESABILITAR BOTOES
+   ====================================== */
+/* Estilização para botões desativados */
+.btn:disabled {
+    background-color: #6c757d; /* Cor de fundo para botão desativado */
+    color: #adb5bd; /* Cor do texto para botão desativado */
+    cursor: not-allowed; /* Mostra o cursor "não permitido" */
+    opacity: 0.65; /* Reduz a opacidade para indicar desativado */
+}
+
+
+/* Contêiner do botão de upload */
+.upload-container {
+    margin-top: 15px; /* Espaço entre o campo Subcategoria e o botão */
+    display: block; /* Garante que o botão fique em uma nova linha */
+}
+
+
+
+
+/* ======================================
+   FORMULARIOS
+   ====================================== */
+
+.form-page {
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-page h2 {
+    font-size: 24px;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-page form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-page label {
+    font-size: 14px;
+    color: #34495e;
+    font-weight: bold;
+}
+
+.form-page input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-page input:focus {
+    border-color: #1abc9c;
+}
+
+.form-page button {
+    background-color: #1abc9c;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-page button:hover {
+    background-color: #16a085;
+}
+
+.form-page p {
+    font-size: 14px;
+    text-align: center;
+    color: #34495e;
+    margin-top: 10px;
+}
+
+.form-page a {
+    color: #1abc9c;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.form-page a:hover {
+    color: #16a085;
+}
+
+
+
+
+
+/* ======================================
+    CONTAINER SOBRE
+   ====================================== */
+.sobre {
+    padding: 2rem;
+    text-align: center;
+    background: #ecf0f1;  
+    margin-top: 100px;
+}
+
+.contato {
+    padding: 2rem;
+    text-align: center;
+    background: #ecf0f1;    
+}
+
+/* ======================================
+   RODAPE
+   ====================================== */
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background: #2c3e50;
+    color: #fff;    
+}
+
+.social-media {
+    margin-top: 1rem;
+}
+
+.social-icon {
+    margin: 0 10px;
+    font-size: 1.5rem;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    color: #1abc9c
+}
+
+.social-icon i {
+    margin-right: 8px;
+}
+
+
+
+
+
+
+
+
+
+

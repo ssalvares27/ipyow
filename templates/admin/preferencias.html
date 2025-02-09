@@ -1,0 +1,23 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<h2>Configurações do Site</h2>
+
+<form method="POST" action="{{ url_for('preferencias.atualizar') }}">
+    <div class="form-group">
+        <label for="taxa_marketplace">Taxa do Marketplace (%)</label>
+        <input type="number" step="0.01" class="form-control" id="taxa_marketplace" name="taxa_marketplace" value="{{ preferencias.taxa_marketplace }}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="cep_padrao_loja">CEP Padrão da Loja</label>
+        <input type="text" class="form-control" id="cep_padrao_loja" name="cep_padrao_loja" value="{{ preferencias.cep_padrao_loja }}" required>
+    </div>
+
+    <button type="submit" class="btn btn-default">
+        <i class="fas fa-save"></i> Salvar
+    </button>
+</form>
+
+{% endblock %}

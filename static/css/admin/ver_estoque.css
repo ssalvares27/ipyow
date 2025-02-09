@@ -1,0 +1,125 @@
+/* ======================================
+   TABELA
+   ====================================== */
+
+
+/* Nome da tabela limitada */
+.nome-limitado {
+    white-space: nowrap; /* Impede a quebra de linha */
+    overflow: hidden; /* Esconde o texto excedente */
+    text-overflow: ellipsis; /* Adiciona "..." ao final do texto */
+    max-width: 200px; /* Define a largura máxima */
+    display: inline-block; /* Trata o texto como um bloco */
+    padding-right: 2px; /* Espaço para o botão */    
+}
+
+/* Descrição da tabela limitada */
+.descricao-limitada {
+    white-space: nowrap; /* Impede a quebra de linha */
+    overflow: hidden; /* Esconde o texto excedente */
+    text-overflow: ellipsis; /* Adiciona "..." ao final do texto */
+    max-width: 300px; /* Define a largura máxima */
+    display: inline-block; /* Trata o texto como um bloco */
+    padding-right: 2px; /* Espaço para o botão */
+}
+
+.subcategoria-limitada {
+    white-space: nowrap; /* Impede a quebra de linha */
+    overflow: hidden; /* Esconde o texto excedente */
+    text-overflow: ellipsis; /* Adiciona "..." ao final do texto */
+    max-width: 200px; /* Define a largura máxima */
+    display: inline-block; /* Trata o texto como um bloco */   
+}
+
+/* ======================================
+   COLOCA O A QUANTIDADE DE PRODUTO CADASTRADO MAIOR
+   ====================================== */
+.menu-produtos-count {
+    font-size: 16px;  /* Tamanho da fonte padrão */
+    font-weight: bold;
+    margin-left: 20px; /* Adiciona margem à esquerda para espaçamento */
+    display: inline-flex;
+    align-items: center;  /* Alinha verticalmente o texto */
+}
+
+.produtos-count {
+    color: #FFD700;  /* Cor amarela */
+    font-size: 24px;  /* Aumentando o tamanho da fonte */
+    font-weight: bold; /* Deixa a fonte mais destacada */
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #333; /* Cor de fundo mais escura para contraste */
+}
+
+/* ======================================
+   ALINHAMENTO DO FORMULÁRIO E CONTAGEM NA MESMA LINHA
+   ====================================== */
+.search-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;  /* Adiciona espaçamento inferior */
+}
+
+.search-container form {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.search-container form .form-control {
+    margin-right: 10px; /* Adiciona espaçamento entre os campos do formulário */
+}
+
+.search-container form button {
+    margin-top: 5px;  /* Adiciona espaçamento acima do botão */
+}
+
+
+
+/* ======================================
+   ESTILOS ESPECÍFICOS PARA A TABELA DE VER ESTOQUE
+   ====================================== */
+
+/* Contêiner da tabela */
+.table-container {
+    width: 100%; /* Ocupa 100% da largura disponível */
+    overflow-x: auto; /* Permite rolagem horizontal */
+    margin: 0 auto; /* Centraliza o contêiner */
+    padding: 0 20px; /* Adiciona um pouco de espaçamento nas laterais */
+}
+
+/* Estilo da tabela */
+table#selectLine {
+    width: 100%; /* Faz a tabela ocupar 100% da largura disponível */
+    border-collapse: collapse; /* Remove espaços entre bordas */
+    margin-top: 10px; /* Espaçamento superior */
+    background-color: white; /* Fundo branco para toda a tabela */
+    display: block; /* Para permitir o scroll */
+    max-height: 1200px; /* Altura máxima da tabela para permitir rolagem */
+    overflow-x: auto; /* Permite rolar a tabela horizontalmente */
+    overflow-y: auto; /* Permite rolar a tabela verticalmente */
+}
+
+/* Estilo do cabeçalho da tabela */
+table#selectLine th {
+    background-color: #343a40; /* Fundo cinza escuro */
+    color: #fff; /* Texto branco */
+    padding: 12px; /* Espaçamento interno */
+    text-align: left; /* Alinha texto à esquerda */
+    position: sticky; /* Torna o cabeçalho fixo */
+    top: 0; /* Fixa no topo */
+    z-index: 2; /* Garante que o cabeçalho fique sobre o conteúdo */
+    white-space: nowrap; /* Evita que o texto quebre em várias linhas */
+}
+
+/* Estilo das células da tabela */
+table#selectLine td {
+    padding: 12px; /* Espaçamento interno */
+    text-align: left; /* Alinha texto à esquerda */
+    white-space: nowrap; /* Evita que o texto quebre em várias linhas */
+    border: 1px solid #ddd; /* Bordas cinza claro */
+    background-color: white; /* Fundo branco nas células */
+}
+

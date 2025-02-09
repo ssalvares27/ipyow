@@ -1,0 +1,65 @@
+{% extends "site/base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/site/cart.css') }}">
+
+<div class="cart-container">
+    <h1>Carrinho de Compras</h1>
+    {% if carrinho %}
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Imagem</th>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Valor Unitário</th>
+                    <th>Valor Total</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produto_id, item in carrinho.items() %}
+                    <tr>
+                        <td>
+                            <img src="{{ url_for('static', filename=item.imagem) }}" alt="{{ item.nome }}" class="product-image">
+                        </td>
+                        <td>{{ item.nome }}</td>
+                       <td>
+                            <form id="form-{{ produto_id }}" action="{{ url_for('cart.atualizar_carrinho', produto_id=item.id) }}" method="POST">
+                                <div class="quantity-control">
+                                    <button type="button" class="quantity-btn" onclick="changeQuantity({{ produto_id }}, -1)">-</button>
+                                    <input type="number" name="quantidade" value="{{ item.quantidade }}" min="1" max="{{ item.estoque_disponivel }}" onchange="atualizarQuantidade({{ produto_id }})">
+                                    <button type="button" class="quantity-btn" onclick="changeQuantity({{ produto_id }}, 1)">+</button>
+                                </div>
+                            </form>
+                        </td>
+                        <td>R$ {{ "%.2f"|format(item.preco) }}</td>
+                        <td>R$ {{ "%.2f"|format(item.preco * item.quantidade) }}</td>
+                        <td>
+                            <form action="{{ url_for('cart.remover_do_carrinho', produto_id=item.id) }}" method="POST">
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fa fa-trash me-2"></i> Remover
+                                </button>
+
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="cart-total">
+            <strong>Total: R$ {{ "%.2f"|format(total) }}</strong>
+        </div>
+        <form action="{{ url_for('cart.finalizar_compra') }}" method="POST">
+            <button type="submit" class="btn btn-default">Finalizar Compra</button>
+        </form>
+    {% else %}
+        <p>Seu carrinho está vazio. <a href="{{ url_for('loja.index') }}">Continue comprando</a>.</p>
+    {% endif %}
+</div>
+
+
+
+
+<script src="{{ url_for('static', filename='js/site/cart.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,19 @@
+/* ======================================
+   GERAIS
+   ====================================== */
+   
+/* Estilos para a área de visualização do ícone */
+#iconePreview {    
+    display: inline-block; /* Garante que o ícone fique na mesma linha */
+    padding: 6px; /* Adiciona algum espaço em torno do ícone */
+    color: #2c3e50; /* Cor do ícone */
+    font-size: 26px; 
+    
+}
+
+/* Espaçamento entre os campos */
+.mb-3 {
+    margin-bottom: 1rem; /* ou o valor desejado */
+}
+
+

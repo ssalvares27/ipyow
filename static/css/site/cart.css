@@ -1,0 +1,153 @@
+/* ======================================
+   GERAL
+   ====================================== */
+
+/* Container do carrinho de compras */
+.cart-container {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Tabela do carrinho */
+.cart-container .cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.cart-container .cart-table th,
+.cart-container .cart-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.cart-container .cart-table th {
+    background-color: #f4f4f4;
+}
+
+/* Imagem do produto no carrinho */
+.cart-container .product-image {
+    max-width: 100px;
+    max-height: 100px;
+    margin-right: 10px;
+}
+
+/* Botões de atualizar e remover */
+.cart-container .update-button,
+.cart-container .remove-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.cart-container .update-button:hover,
+.cart-container .remove-button:hover {
+    background-color: #0056b3;
+}
+
+/* Total do carrinho */
+.cart-container .cart-total {
+    text-align: right;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+
+/* Adicione isso ao seu arquivo CSS (cart.css) */
+input[type="number"] {
+    width: 60px; /* Largura do input */
+    padding: 8px;
+    border: 2px solid #007bff; /* Borda azul */
+    border-radius: 5px; /* Cantos arredondados */
+    font-size: 16px;
+    text-align: center;
+    outline: none; /* Remove o contorno padrão ao focar */
+    transition: border-color 0.3s ease; /* Transição suave */
+}
+
+input[type="number"]:focus {
+    border-color: #0056b3; /* Cor da borda ao focar */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra ao focar */
+}
+
+
+/* Tamanho das colunas */
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-table th,
+.cart-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.cart-table th:nth-child(1),
+.cart-table td:nth-child(1) {
+    width: 100px; /* Coluna "Imagem" */
+}
+
+.cart-table th:nth-child(2),
+.cart-table td:nth-child(2) {
+    width: 300px; /* Coluna "Produto" */
+}
+
+.cart-table th:nth-child(3),
+.cart-table td:nth-child(3) {
+    width: 150px; /* Coluna "Quantidade" */
+}
+
+.cart-table th:nth-child(4),
+.cart-table td:nth-child(4) {
+    width: 200px; /* Coluna "Preço Unitário" */
+}
+
+.cart-table th:nth-child(5),
+.cart-table td:nth-child(5) {
+    width: 200px; /* Coluna "Total" */
+}
+
+.cart-table th:nth-child(6),
+.cart-table td:nth-child(6) {
+    width: 150px; /* Coluna "Ações" */
+}
+
+
+
+/* Destaque da quantidade */
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.quantity-btn:hover {
+    background-color: #0056b3;
+}
+
+.quantity-btn:active {
+    background-color: #004080;
+}
+
+input[type="number"] {
+    margin: 0 5px; /* Espaçamento entre os botões e o input */
+}

@@ -1,0 +1,54 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/inserir_categoria.css') }}">
+
+    <div class="container mt-5">
+       
+        <form method="POST" action="{{ url_for('segmento.inserir_subcategoria') }}" class="backwite">
+            {{ form.hidden_tag() }} <!-- Campo oculto gerado pelo Flask-WTF para proteger contra CSRF -->
+
+            <!-- Campo para o nome da subcategoria -->
+            <div class="mb-3">
+                {{ form.nome.label(class="form-label") }} <!-- Rótulo do campo nome -->
+                {{ form.nome(class="form-control") }} <!-- Campo de entrada para o nome -->               
+            </div>
+            
+            <!-- Campo para a subcategoria -->
+            <div class="mb-3">
+                {{ form.icone.label(class="form-label") }} <!-- Rótulo do campo ícone -->
+                {{ form.icone(class="form-control", id="iconeSelect") }} <!-- Campo de seleção para ícones -->
+                <div id="iconePreview">
+                    <!-- Ícone será exibido aqui -->
+                </div>              
+            </div>
+            
+            <!-- Campo para a descrição da subcategoria -->
+            <div class="mb-3">
+                {{ form.descricao.label(class="form-label") }} <!-- Rótulo do campo descrição -->
+                {{ form.descricao(class="form-control") }} <!-- Campo de entrada para a descrição -->                
+            </div>
+            
+            <!-- Campo para selecionar a categoria  -->
+            <div class="mb-3">
+                {{ form.categoria_id.label(class="form-label") }} <!-- Rótulo do campo categoria_id -->
+                {{ form.categoria_id(class="form-control") }} <!-- Campo de seleção para categoria -->               
+            </div>     
+            
+            <!-- Botão de submit -->
+            <button type="submit" class="btn btn-default">
+                <i class="fas fa-save"></i> Inserir Subcategoria
+            </button>
+            
+            <!-- Link para cancelar e voltar para a página de inserção de produto -->
+            <a href="{{ url_for('produto.inserir_produto') }}" class="btn btn-cancelar">
+                <i class="fas fa-times"></i> Cancelar
+            </a>
+        </form>
+    </div>
+    
+<script src="{{ url_for('static', filename='js/admin/inserir_categoria.js') }}"></script>
+
+{% endblock %}

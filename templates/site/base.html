@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja Ipyow</title>
+    <!-- Estilos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/site/_geral.css') }}">
+</head>
+
+<body>
+    <!-- Navegação principal -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="/"><img src="{{ url_for('static', filename='img/geral/logo.png') }}" alt="Loja Ipyow"></a>
+            </div>
+            <div class="menu-and-actions">
+                <ul class="menu">
+                    <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#sobre"><i class="fas fa-info-circle"></i> Sobre</a></li>
+                    <li><a href="#contato"><i class="fas fa-phone-alt"></i> Contato</a></li>
+                    <li>
+                        {% if session.get('user') %}
+                            <!-- Mostrar nome do usuário e opção de logout -->
+                            <div class="dropdown">
+                                <a href="#" class="dropdown-toggle"><i class="fas fa-user"></i> {{ session['user'] }}</a>
+                                <div class="dropdown-menu">
+                                    <a href="{{ url_for('loja.logout') }}" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                                </div>
+                            </div>
+                        {% else %}
+                            <!-- Mostrar link de login quando o usuário não estiver logado -->
+                            <a href="{{ url_for('loja.login') }}"><i class="fas fa-sign-in-alt"></i> Entrar</a>
+                        {% endif %}
+                    </li>
+
+                </ul>
+
+
+            </div>
+            <div class="search-cart">
+                <form action="/search" method="GET" class="search-bar">
+                    <input type="text" name="q" placeholder="Buscar produtos...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                <a href="{{ url_for('cart.cart') }}" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    {% if total_itens > 0 %}
+                        <span class="cart-count">{{ total_itens }}</span>
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+    </nav>
+     
+    <!-- Barra de categorias -->  
+    <div class="category-bar">
+        <div class="container">
+            <ul class="category-list">
+                <!-- Botão para selecionar todas as categorias -->
+                <li>
+                    <a href="{{ url_for('loja.index') }}" id="select-all-btn" class="category-link">
+                        <i class="fa fa-shopping-bag"></i> <!-- Ícone para o botão -->
+                        <span>Todos Produtos</span>
+                    </a>
+                </li>
+                {% for categoria_id, categoria in categorias.items() %}
+                <li>
+                    <a href="{{ url_for('loja.index', categoria_id=categoria_id) }}" 
+                       class="category-link {% if categoria_id == categoria_id %}active{% endif %}">
+                        <i class="{{ categoria.icon }}"></i>
+                        <span>{{ categoria.nome }}</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    
+      <!-- Exibir mensagens flash -->
+      <div class="flash-messages-container">
+          <div class="flash-messages">
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                      {% for category, message in messages %}
+                          <div class="flash {{ category }}">{{ message }}</div>
+                      {% endfor %}
+                  {% endif %}
+              {% endwith %}
+          </div>
+      </div> 
+    
+    {% block content %}
+    {% endblock %}
+    
+    <section id="sobre" class="sobre">
+        <h2>Sobre Nós</h2>
+        <p>Somos uma loja dedicada a trazer os melhores produtos de plataformas parceiras, garantindo qualidade, preços competitivos e uma experiência de compra prática e segura.</p>
+    </section>
+    
+    <section id="contato" class="contato">
+        <h2>Contato</h2>      
+        <p>Para entrar em contato, envie um e-mail para:</p>
+        <p class="email-link">contatoipyow@gmail.com</p>
+    </section>
+    
+     <footer class="footer">
+        <p>&copy; 2025 Ipyow - Todos os direitos reservados.</p>
+        <div class="social-media">
+            <!-- Link para o TikTok -->
+            <a href="https://www.tiktok.com/@ypiowtec" target="_blank" class="social-icon">
+                <i class="fab fa-tiktok"></i>
+            </a>
+            <!-- Link para o WhatsApp com seu número -->
+            <a href="https://wa.me/34984228754" target="_blank" class="social-icon">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+
+
+    </footer>
+
+
+    
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script src="{{ url_for('static', filename='js/site/_geral.js') }}"></script>
+</body>
+
+</html>

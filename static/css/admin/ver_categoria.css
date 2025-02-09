@@ -1,0 +1,56 @@
+
+/* ======================================
+   GRID
+   ====================================== */
+/* Container principal para os grids */
+.grid-container {
+    display: flex; /* Define um layout flexível para os grids */
+    justify-content: space-between; /* Espaça os grids uniformemente */
+    gap: 20px; /* Espaçamento entre os grids */
+}
+
+/* Estilo geral para cada grid */
+.grid {
+    flex: 1; /* Permite que cada grid ocupe a mesma proporção no espaço disponível */
+    border: 1px solid #ccc; /* Adiciona uma borda cinza ao redor do grid */
+    border-radius: 5px; /* Arredonda levemente os cantos das bordas */
+    padding: 20px; /* Adiciona espaço interno ao redor do conteúdo do grid */
+    background-color: #f9f9f9; /* Define a cor de fundo do grid */
+
+    display: flex; /* Define o grid como um contêiner flexível */
+    flex-direction: column; /* Organiza os elementos verticalmente */
+    align-items: stretch; /* Garante que os elementos ocupem toda a largura disponível */
+    justify-content: flex-start; /* Alinha os elementos ao topo */
+}
+
+/* Estilo para o título dentro de cada grid */
+.grid h2 {
+    text-align: center; /* Centraliza o texto do título */
+    margin-bottom: 20px; /* Adiciona um espaçamento inferior ao título */
+    width: 100%; /* Garante que o título ocupe a largura total */
+}
+
+/* Tabela dentro do grid */
+.grid table {
+    width: 100%; /* Faz a tabela ocupar toda a largura disponível */
+    max-width: 100%; /* Limita a largura máxima da tabela */
+}
+
+/* ======================================
+   TABELA
+   ====================================== */
+/* Nome da tabela limitada */
+
+/* Descrição da tabela limitada */
+.descricao-limitada {
+    white-space: nowrap; /* Impede a quebra de linha */
+    overflow: hidden; /* Esconde o texto excedente */
+    text-overflow: ellipsis; /* Adiciona "..." ao final do texto */
+    max-width: 450px; /* Define a largura máxima */
+    display: inline-block; /* Trata o texto como um bloco */
+    
+}
+
+
+
+

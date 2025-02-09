@@ -1,0 +1,142 @@
+/* ======================================
+   CONTAINER DO PRODUTO
+   ====================================== */
+
+.index-container .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.index-container .product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 colunas fixas */
+    gap: 20px; /* Espaçamento entre os itens */
+    justify-content: center; /* Centraliza o grid dentro do container */
+}
+
+.index-container .product-card {
+    background-color: #fff; /* Branco */
+    border: 1px solid #ddd; /* Cinza claro */
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empurra o botão para o fundo */
+    height: 350px; /* Ajuste conforme necessário */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra preta transparente */
+    transition: transform 0.2s ease;
+}
+
+.index-container .product-card:hover {
+    transform: scale(1.05);
+}
+
+.index-container .product-image {
+    width: 100%;
+    aspect-ratio: 4 / 3; /* Ajuste a proporção conforme necessário */
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* Descrição geral */
+.index-container .product-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+}
+
+/* Título do produto */
+.index-container .product-description .product-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    margin: 10px 0;
+    color: #333; /* Cinza escuro */
+    font-size: 1em;
+    line-height: 1.6em;
+}
+
+/* Preço do produto */
+.index-container .product-description .product-price {
+    font-size: 1.1em;
+    color: #4CAF50; /* Verde */
+    margin-top: 10px; /* Espaçamento entre o título e o preço */
+    margin-bottom: 10px;
+}
+
+/* Título da página */
+.breadcrumbs {
+    font-size: 18px;
+    color: #1abc9c; /* Verde água */
+    margin-bottom: 30px;
+}
+
+.breadcrumbs span {
+    margin-right: 5px;
+}
+
+.breadcrumbs span:last-child {
+    font-weight: bold;
+}
+
+/* ======================================
+   COLOCA O CONTAINER DO PRODUTO EM PRETO E BRANCO
+   ====================================== */
+
+.product-card.estoque-zerado {
+    filter: grayscale(100%);
+    opacity: 0.6;
+    border: 2px dashed #000; /* Preto */
+}
+
+.product-card.estoque-zerado:hover {
+    opacity: 1;
+    filter: grayscale(50%);
+}
+
+/* ======================================
+   BOTÃO DESABILITADO
+   ====================================== */
+
+.product-button.disabled {
+    pointer-events: none; /* Impede cliques no botão */
+    background-color: #ccc; /* Cinza claro */
+    color: #666; /* Cinza médio */
+    cursor: not-allowed; /* Mostra um cursor de "não permitido" */
+}
+
+/* ======================================
+   PRODUTO ESGOTADO
+   ====================================== */
+
+/* Estilo para o container de produtos esgotados */
+.product-card.estoque-zerado {
+    position: relative;
+}
+
+/* Mensagem de produto esgotado */
+.product-out-of-stock {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Preto semi-transparente */
+    color: #fff; /* Branco */
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 2;
+    pointer-events: none; /* Impede interação com a mensagem */
+    border-radius: 8px; /* Se as bordas do card forem arredondadas */
+}

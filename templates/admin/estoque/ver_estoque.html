@@ -1,0 +1,118 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/ver_estoque.css') }}">
+
+<div class="search-container">
+    <form method="GET" class="form-inline"> <!-- Modificado para GET -->
+        {{ form.hidden_tag() }}
+        
+        <!-- Campo Nome -->
+        {{ form.nome_produto.label }}
+        {{ form.nome_produto(class="form-control") }}  
+        
+        <!-- Campo Subcategoria -->
+        {{ form.subcategoria.label }}
+        {{ form.subcategoria(class="form-control") }}
+        
+        <!-- Campo Status -->
+        {{ form.status.label }}
+        {{ form.status(class="form-control") }}
+        
+        <!-- Botão de Buscar -->
+        <button type="submit" class="btn">
+            <i class="fas fa-search"></i> {{ form.submit.label.text }}
+        </button>
+    </form>
+    
+    <!-- Exibir a quantidade de produtos no menu, agora alinhada com o formulário -->
+    <div class="menu-produtos-count">
+        Total de Produtos Cadastrados: <span class="produtos-count">{{ produtos_count }}</span>
+    </div>
+</div>
+
+
+    
+    
+
+<table id="selectLine">
+    <tr>
+        <th>Imagem</th>  <!-- Nova Coluna -->
+        <th>Produto</th>
+        <th>Descrição</th>
+        <th>Total</th>       
+        <th>Valor de Custo</th>
+        <th>Valor de Venda</th>
+        <th>Margem de Lucro</th>
+        <th>Valor Unitário</th>
+        <th>Taxa MarketPlace</th>
+        <th>Lucro Total</th>
+        <th>Peso (kg)</th>
+        <th>Largura (cm)</th>
+        <th>Altura (cm)</th>
+        <th>Comprimento (cm)</th>
+        <th>Subcategoria</th>
+        <th>Código de Barra</th>
+        <th>Status</th>
+        <th>Ações</th>
+    </tr>
+    
+    {% for item in produtos %}
+    <tr>
+        <td>
+            {% if item.imagem_url %}
+                <img src="{{ url_for('static', filename=item.imagem_url) }}" alt="Imagem do Produto" width="60" height="60">
+            {% else %}
+                <span>Sem Imagem</span>
+            {% endif %}
+        </td>
+        
+        <td>         
+            <div class="nome-limitado">{{ item.produto.nome[:50] }}...</div>
+            <button class="btn-dg btn-info btn-ver-descricao" onclick="mostrarDescricao(`{{ item.produto.nome | e }}`)">
+                <i class="fas fa-eye"></i>               
+            </button>
+        </td>
+        
+        <td>
+            <div class="descricao-limitada">{{ item.produto.descricao[:100] }}...</div>
+            <button class="btn-dg btn-info btn-ver-descricao" onclick="mostrarDescricao(`{{ item.produto.descricao | e }}`)">
+                <i class="fas fa-eye"></i>               
+            </button>
+        </td> 
+        
+        <td>{{ item.quantidade_estoque }}</td>        
+        <td>{{ item.produto.preco_custo | round(2) }}</td>
+        <td>{{ item.produto.calcular_preco_venda() | round(2) }}</td>
+        <td>{{ item.produto.margem_lucro | round(2) }}%</td>
+        <td>{{ item.produto.calcular_lucro_unitario() | round(2) }}</td>
+        <td>{{ item.lucro_unitario_com_taxa | round(2) }}</td>
+        <td>{{ item.produto.calcular_lucro_total() | round(2) }}</td>
+        <td>{{ item.produto.peso | round(2) }}</td>
+        <td>{{ item.produto.largura | round(2) }}</td>
+        <td>{{ item.produto.altura | round(2) }}</td>
+        <td>{{ item.produto.comprimento | round(2) }}</td>
+        <td>
+            <div class="subcategoria-limitada">{{ item.produto.subcategoria.nome[:70] if item.produto.subcategoria else 'Sem Subcategoria' }}...</div>            
+        </td>
+        <td>{{ item.produto.codigo_barra }}</td>
+        <td>{{ item.produto.status }}</td>
+        <td>
+            <a href="{{ url_for('produto.atualizar_produto', produto_id=item.produto.id) }}" class="btn-dg btn-warning">
+                <i class="fas fa-edit"></i>
+            </a>
+            <form action="{{ url_for('produto.deletar_produto', produto_id=item.produto.id) }}" method="post" class="inline-form" onsubmit="return confirmarExclusao('{{ item.produto.nome }}')">
+                <button type="submit" class="btn-dg btn-danger">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+<script src="{{ url_for('static', filename='js/admin/ver_estoque.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+/* ======================================
+   GERAIS
+   ====================================== */
+   
+.quantidade-estoque {
+    font-size: 1.8em;  /* Tamanho maior */
+    font-weight: bold;  /* Negrito */
+    color: green;  /* Cor verde */
+    margin-left: 5px;  /* Espaço à esquerda */
+}
+
+
+
+#informe {
+    margin-left: 10px;  /* Ajuste o valor conforme necessário */
+}
+
