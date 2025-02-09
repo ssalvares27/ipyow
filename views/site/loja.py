@@ -91,7 +91,7 @@ def index():
     return render_template(
         'site/index.html',
         produtos=produtos_com_precos,
-        page_title='Home SSA',
+        page_title='Home',
         categoria_id=categoria_id,
         user=session.get('user'),  # Passar o usuário logado para o template
         total_itens=calcular_itens_carrinho()  # Passar o número total de itens no carrinho
