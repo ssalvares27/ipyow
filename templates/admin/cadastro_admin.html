@@ -1,0 +1,48 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <h2>Cadastro de Administrador</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+            <label for="username" class="form-label">Usuário</label>
+            {{ form.username(class="form-control", id="username") }}
+            {% for error in form.username.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Senha</label>
+            {{ form.password(class="form-control", id="password") }}
+            {% for error in form.password.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            <label for="confirm_password" class="form-label">Confirmar Senha</label>
+            {{ form.confirm_password(class="form-control", id="confirm_password") }}
+            {% for error in form.confirm_password.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <button type="submit" class="btn btn-default">
+            <i class="fas fa-save"></i> Salvar
+        </button>
+    </form>
+</div>
+{% endblock %}

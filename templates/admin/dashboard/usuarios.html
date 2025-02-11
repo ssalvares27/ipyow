@@ -1,0 +1,30 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Endereço</th>
+        <th>Cidade</th>
+        <th>Estado</th>      
+      </tr>
+    </thead>
+    <tbody>
+      {% for usuario in usuarios %}
+        <tr>
+          <td>{{ usuario.id }}</td>
+          <td>{{ usuario.nome }}</td>
+          <td>{{ usuario.email }}</td>
+          <td>{{ usuario.endereco }}</td>
+          <td>{{ usuario.cidade }}</td>
+          <td>{{ usuario.estado }}</td>         
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

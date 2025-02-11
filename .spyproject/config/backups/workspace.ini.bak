@@ -4,7 +4,7 @@ save_data_on_exit = True
 save_history = True
 save_non_project_files = False
 project_type = 'empty-project-type'
-recent_files = ['app.py', 'github.py']
+recent_files = ['app.py', 'models.py', 'views\\admin\\dashboard.py', 'templates\\admin\\dashboard\\usuarios.html', 'templates\\admin\\base.html']
 
 [main]
 version = 0.2.0

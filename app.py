@@ -3,11 +3,13 @@
 
 from flask_migrate import Migrate
 from views import create_app
-from models import db, Categoria
-from flask import redirect, url_for
+from models import db, Categoria, Admin
+from flask import render_template, redirect, url_for, request, session, flash
 import os
 from config import Config  # Importa a configuração
 from flask_mail import Mail, Message
+from forms.frm_admin import AdminRegistrationForm
+
 
 # Define caminhos para templates e estáticos
 template_folder = os.path.join(os.path.dirname(
@@ -68,12 +70,52 @@ def make_shell_context():
     return {'db': db, 'Categoria': Categoria}
 
 
-@app.route('/admin')
-def admin():
-    """
-    Redireciona para a página inicial do admin.
-    """
-    return redirect(url_for('dashboard.index'))
+
+@app.route('/admin/cadastro', methods=['GET', 'POST'])
+def admin_cadastro():
+    form = AdminRegistrationForm()  # Criando a instância do formulário
+
+    if form.validate_on_submit():  # Usando FlaskForm para validar a submissão
+        username = form.username.data
+        password = form.password.data
+
+        admin = Admin.query.filter_by(username=username).first()
+        if admin:
+            flash('Usuário já existe', 'danger')
+            return redirect(url_for('admin_cadastro'))
+
+        novo_admin = Admin(username=username)
+        novo_admin.set_password(password)
+        db.session.add(novo_admin)
+        db.session.commit()
+
+        flash('Administrador cadastrado com sucesso', 'success')
+        return redirect(url_for('admin_login'))
+
+    return render_template('admin/cadastro_admin.html', form=form)  # Passando o form para o template
+
+
+
+
+@app.route('/admin/login', methods=['GET', 'POST'])
+def admin_login():    
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        admin = Admin.query.filter_by(username=username).first()
+        
+        if admin and admin.check_password(password):
+            session['admin_logged_in'] = True
+            return redirect(url_for('dashboard.index'))  # Redireciona para o dashboard
+        else:
+            flash('Credenciais inválidas', 'danger')
+    return render_template('admin/login_admin.html')
+
+
+@app.route('/admin/logout')
+def admin_logout():
+    session.pop('admin_logged_in', None)
+    return redirect(url_for('admin_login'))
 
 
 @app.route('/')

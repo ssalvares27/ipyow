@@ -436,6 +436,7 @@ form .form-control {
     margin-bottom: 25px; /* Ajuste o valor conforme necessário */
 }
 
+
 /* ======================================
    LABEL
    ====================================== */
@@ -455,15 +456,31 @@ label {
 }
 
 
-input[type="text"], input[type="number"]{
-    width: 100%; /* Largura total do elemento */
-    padding: 10px; /* Espaçamento interno */
-    margin-bottom: 20px; /* Espaçamento inferior */
-    border: 1px solid #ddd; /* Bordas cinza claro */
+/* Estilos para o campo de nome de usuário */
+input[type="text"] {
+    width: 80%; /* Ajusta a largura do campo de nome de usuário */
+    padding: 10px; /* Adiciona espaçamento interno */
+    border: 2px solid #ccc; /* Borda padrão */
     border-radius: 5px; /* Bordas arredondadas */
-    background-color: white; /* Fundo branco */
-    font-size: 16px; /* Tamanho da fonte */
-    margin-right: 10px; /* espaco direito */
+    font-size: 16px; /* Ajusta o tamanho da fonte */
+}
+
+/* Estilos para o campo de senha */
+input[type="password"] {
+    width: 80%; /* Ajusta a largura do campo de senha */
+    padding: 10px; /* Adiciona espaçamento interno */
+    border: 2px solid #ccc; /* Borda padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 16px; /* Ajusta o tamanho da fonte */
+}
+
+/* Estilos para o campo de senha */
+input[type="number"] {
+    width: 80%; /* Ajusta a largura do campo de senha */
+    padding: 10px; /* Adiciona espaçamento interno */
+    border: 2px solid #ccc; /* Borda padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 16px; /* Ajusta o tamanho da fonte */
 }
 
 

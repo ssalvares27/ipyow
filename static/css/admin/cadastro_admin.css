@@ -1,0 +1,17 @@
+/* Estilos para o campo de nome de usuário */
+input[type="text"] {
+    width: 80%; /* Ajusta a largura do campo de nome de usuário */
+    padding: 10px; /* Adiciona espaçamento interno */
+    border: 2px solid #ccc; /* Borda padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 16px; /* Ajusta o tamanho da fonte */
+}
+
+/* Estilos para o campo de senha */
+input[type="password"] {
+    width: 80%; /* Ajusta a largura do campo de senha */
+    padding: 10px; /* Adiciona espaçamento interno */
+    border: 2px solid #ccc; /* Borda padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 16px; /* Ajusta o tamanho da fonte */
+}

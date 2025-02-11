@@ -1,6 +1,6 @@
 flask db init
 
-flask db migrate -m "migracao2_080225"
+flask db migrate -m "migracao3_100225"
 
 flask db upgrade
 

@@ -53,6 +53,11 @@
                 <i class="fas fa-cog"></i>Preferencias
             </a>
         </li>
+        <li>
+            <a href="/admin/cadastro" class="{{ 'active' if request.path == '/admin/cadastro' else '' }}">
+                <i class="fas fa-cog"></i>Cadastro Admin
+            </a>
+        </li>
         <li class="has-submenu">
             <a href="javascript:void(0);" class="submenu-toggle">
                 <i class="fas fa-tachometer-alt"></i>Dashboard
@@ -61,7 +66,7 @@
             <!-- Submenu para Dashboard -->
             <ul class="submenu">
                 <li>
-                    <a href="/admin" class="{{ 'active' if request.path == '/admin' else '' }}">
+                    <a href="/admin/dashboard/ver" class="{{ 'active' if request.path == '/admin/dashboard/ver' else '' }}">
                         <i class="fas fa-search"></i> Ver Indicadores
                     </a>
                 </li>
@@ -69,7 +74,12 @@
                     <a href="/admin/dashboard/capital" class="{{ 'active' if request.path == '/admin/dashboard/capital' else '' }}">
                         <i class="fas fa-search"></i> Ver Capital
                     </a>
-                </li>                 
+                </li>
+                <li>
+                    <a href="/admin/dashboard/usuarios" class="{{ 'active' if request.path == '/admin/dashboard/usuarios' else '' }}">
+                        <i class="fas fa-search"></i> Usuarios
+                    </a>
+                </li>                    
                
             </ul>
         </li>

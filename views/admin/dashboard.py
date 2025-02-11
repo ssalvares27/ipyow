@@ -2,7 +2,7 @@
 """ views/admn/dashboard """
 
 from flask import Blueprint, render_template, request
-from models import Bi, Preferencias
+from models import Bi, Preferencias, Usuario
 from datetime import datetime
 # Certifique-se de importar o formulário adequado
 from forms.frm_dashboard import FiltroForm
@@ -87,3 +87,12 @@ def capital():
         taxa_marketplace=taxa_marketplace,  # Passar a taxa para o template
         page_title='Dashboard > Capital'
     )
+
+@dashboard_bp.route('/usuarios', methods=['GET', 'POST'])
+def ver_usuarios():
+    # Busca todos os usuários cadastrados
+    usuarios = Usuario.query.all()  # Obtém todos os usuários
+    return render_template(
+        'admin/dashboard/usuarios.html', 
+        usuarios=usuarios,
+        page_title='Dashboard > Usuarios')
