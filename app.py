@@ -106,6 +106,7 @@ def admin_login():
         
         if admin and admin.check_password(password):
             session['admin_logged_in'] = True
+            session['admin_username'] = admin.username  # Adiciona o nome do admin à sessão
             return redirect(url_for('dashboard.index'))  # Redireciona para o dashboard
         else:
             flash('Credenciais inválidas', 'danger')

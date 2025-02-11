@@ -1,0 +1,18 @@
+{% extends 'site/base.html' %}
+
+{% block content %}
+<div class="container form-page">
+    <h2>Alterar Senha</h2>  
+
+    <form action="{{ url_for('loja.update_senha', user_id=usuario.id) }}" method="POST">
+        <label for="nova_senha">Nova Senha:</label>
+        <input type="password" id="nova_senha" name="nova_senha" required>
+        
+        <label for="confirmar_senha">Confirmar Nova Senha:</label>
+        <input type="password" id="confirmar_senha" name="confirmar_senha" required>
+
+        <button type="submit">Alterar Senha</button>
+    </form>
+</div>
+
+{% endblock %}

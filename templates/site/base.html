@@ -25,17 +25,26 @@
                     <li><a href="#contato"><i class="fas fa-phone-alt"></i> Contato</a></li>
                     <li>
                         {% if session.get('user') %}
-                            <!-- Mostrar nome do usuário e opção de logout -->
                             <div class="dropdown">
                                 <a href="#" class="dropdown-toggle"><i class="fas fa-user"></i> {{ session['user'] }}</a>
                                 <div class="dropdown-menu">
-                                    <a href="{{ url_for('loja.logout') }}" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                                    {% if 'user_id' in session %}
+                                        <a href="{{ url_for('loja.update_user', user_id=session['user_id']) }}" class="dropdown-item">
+                                            <i class="fas fa-user-edit"></i> Atualizar Perfil
+                                        </a>
+                                        <a href="{{ url_for('loja.update_senha', user_id=session['user_id']) }}" class="dropdown-item">
+                                            <i class="fas fa-key"></i> Alterar Senha
+                                        </a>
+                                    {% endif %}
+                                    <a href="{{ url_for('loja.logout') }}" class="dropdown-item">
+                                        <i class="fas fa-sign-out-alt"></i> Sair
+                                    </a>
                                 </div>
                             </div>
                         {% else %}
-                            <!-- Mostrar link de login quando o usuário não estiver logado -->
                             <a href="{{ url_for('loja.login') }}"><i class="fas fa-sign-in-alt"></i> Entrar</a>
                         {% endif %}
+
                     </li>
 
                 </ul>

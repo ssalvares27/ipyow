@@ -1,0 +1,32 @@
+{% extends 'site/base.html' %}
+
+{% block content %}
+<div class="container form-page">
+    <h2>Atualizar Usuário</h2>  
+
+    <form action="{{ url_for('loja.update_user', user_id=usuario.id) }}" method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" value="{{ usuario.nome }}" required>
+        
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" value="{{ usuario.email }}" required>
+        
+        <label for="endereco">Endereço:</label>
+        <input type="text" id="endereco" name="endereco" value="{{ usuario.endereco }}" required>
+        
+        <label for="cep">CEP:</label>
+        <input type="text" id="cep" name="cep" value="{{ usuario.cep }}" required onblur="buscarEndereco()" maxlength="10" oninput="mascaraCep(this)">
+
+        <label for="cidade">Cidade:</label>
+        <input type="text" id="cidade" name="cidade" value="{{ usuario.cidade }}" required>
+
+        <label for="estado">Estado:</label>
+        <input type="text" id="estado" name="estado" value="{{ usuario.estado }}" required>
+
+        <button type="submit">Atualizar</button>
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename='js/site/register.js') }}"></script>
+
+{% endblock %}

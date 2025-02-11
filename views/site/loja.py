@@ -21,7 +21,8 @@ def login():
 
         if usuario and check_password_hash(usuario.senha, senha):
             # Autenticação bem-sucedida
-            session['user'] = usuario.nome
+            session['user_id'] = usuario.id  # Armazena o ID do usuário na sessão
+            session['user'] = usuario.nome  # Opcional, mantém o nome também
             flash(f"Bem-vindo, {usuario.nome}!", 'success')
             return redirect(url_for('loja.index'))
         else:
@@ -36,12 +37,18 @@ def login():
         'site/login.html',
         total_itens=total_itens  # Passar o número total de itens no carrinho
     )
+
+
+
+
 # Rota de logout
 @loja_bp.route('/logout')
 def logout():
-    session.pop('user', None)
+    session.pop('user_id', None)  # Removendo o ID do usuário da sessão
+    session.pop('user', None)  # Removendo o nome do usuário da sessão
     flash('Você saiu da sua conta.', 'info')
     return redirect(url_for('loja.login'))
+
 
 # Página inicial da loja
 @loja_bp.route('/')
@@ -197,6 +204,56 @@ def register():
         total_itens=calcular_itens_carrinho()  # Passar o número total de itens no carrinho
     )
 
+
+
+@loja_bp.route('/update_user/<int:user_id>', methods=['GET', 'POST'])
+def update_user(user_id):
+    usuario = Usuario.query.get_or_404(user_id)
+
+    if request.method == 'POST':
+        # Atualizar os dados do usuário
+        usuario.nome = request.form.get('nome')
+        usuario.email = request.form.get('email')
+        usuario.endereco = request.form.get('endereco')
+        usuario.cep = request.form.get('cep')
+        usuario.cidade = request.form.get('cidade')
+        usuario.estado = request.form.get('estado')
+
+        db.session.commit()
+        flash('Dados atualizados com sucesso!', 'success')
+        return redirect(url_for('loja.update_user', user_id=user_id))
+
+    return render_template(
+        'site/update_user.html',
+        page_title='Atualizar Usuário',
+        usuario=usuario,
+        total_itens=calcular_itens_carrinho()
+    )
+
+
+@loja_bp.route('/update_senha/<int:user_id>', methods=['GET', 'POST'])
+def update_senha(user_id):
+    usuario = Usuario.query.get_or_404(user_id)
+
+    if request.method == 'POST':
+        nova_senha = request.form.get('nova_senha')
+        confirmar_senha = request.form.get('confirmar_senha')
+
+        if nova_senha and confirmar_senha:
+            if nova_senha == confirmar_senha:
+                usuario.senha = nova_senha  # Usando o setter para criptografar a nova senha
+                db.session.commit()
+                flash('Senha alterada com sucesso!', 'success')
+                return redirect(url_for('loja.update_senha', user_id=user_id))
+            else:
+                flash('As senhas não coincidem. Tente novamente.', 'error')
+
+    return render_template(
+        'site/update_senha.html',
+        page_title='Alterar Senha',
+        usuario=usuario,
+        total_itens=calcular_itens_carrinho()
+    )
 
 
 
